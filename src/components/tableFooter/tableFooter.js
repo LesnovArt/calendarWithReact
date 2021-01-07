@@ -1,8 +1,8 @@
 import React from "react";
-import style from "./TableFooter.module.scss";
+import style from "./tableFooter.module.scss";
 
 function TableFooter() {
-    return;
+    return <h1>tableFooter</h1>;
 }
 
 export default TableFooter;

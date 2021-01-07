@@ -1,8 +1,8 @@
 import React from "react";
-import style from "./TableHead.module.scss";
+import style from "./tableHead.module.scss";
 
 function TableHead() {
-    return;
+    return <h1>tableHead</h1>;
 }
 
 export default TableHead;
