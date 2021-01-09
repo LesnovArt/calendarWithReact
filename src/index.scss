@@ -21,3 +21,19 @@ code {
   flex-direction: column;
   width: 1323px;
 }
+table {
+  border-collapse: collapse;
+}
+tbody::after {
+  height: 34px;
+  display: block;
+  content: " ";
+}
+.day {
+  width: 34px;
+  height: 34px;
+  border: 1px solid grey;
+}
+.memberName {
+  font-size: 15px;
+}

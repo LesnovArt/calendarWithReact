@@ -3,13 +3,16 @@ import TeamHead from "../teamHead/teamHead";
 import TeamBody from "../teamBody/teamBody";
 import style from "./tableBody.module.scss";
 
-function TableBody() {
+function TableBody(props) {
+    console.log(props.members)
+
     return (
-        <>
-            <h1>tableBody</h1>
-            <TeamHead/>
-            <TeamBody/>
-        </>
+        <tbody className = "tableBody">
+            <TeamHead teamName = {props.department}/> 
+            {props.members.map((member) =>
+            <TeamBody member = {member}/>)
+            }
+        </tbody>
     );
 }
 
