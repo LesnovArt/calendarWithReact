@@ -4,11 +4,12 @@ import TeamBody from "../teamBody/teamBody";
 import style from "./tableBody.module.scss";
 
 function TableBody() {
+
     return (
         <>
             <h1>tableBody</h1>
-            <TeamHead/>
-            <TeamBody/>
+                <TeamHead/>
+                <TeamBody/>
         </>
     );
 }
