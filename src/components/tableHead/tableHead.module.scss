@@ -1,0 +1,57 @@
+.addVacationBtn {
+  width: 144px;
+  height: 40px;
+  background: var(--btn-bg);
+  border-radius: 7px;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  line-height: 21px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addVacationBtn span {
+  font-size: 24px;
+  padding-right: 10px;
+}
+
+.outputItem {
+  height: 64px;
+  width: 34px;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  line-height: 28px;
+  border: 1px solid rgb(192, 192, 192);
+}
+
+.addVacationCell {
+  max-width: fit-content;
+  padding: 0 119px 24px 0;
+  margin: 0;
+  border-top: none;
+  border-left: none;
+}
+
+.outputDay {
+  padding: 7px;
+  text-align: center;
+  color: #000;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.outputDate {
+  text-align: center;
+  color: #000;
+  font-size: 14;
+  font-weight: 600;
+  line-height: 21px;
+}
+
+.sumCell {
+  font-size: 12px;
+  line-height: 18px;
+}

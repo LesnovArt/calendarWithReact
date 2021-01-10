@@ -13,8 +13,9 @@ import moment from 'moment';
 
 
 function App() {
-  const [ date, setDate] = useState(moment())
+  const [ currentDate, setCurrentDate] = useState(moment())
   const [members, setPost] = useState([1])
+  const arrDays= []
 
   useEffect(() => {
   axios
@@ -47,17 +48,37 @@ function App() {
     return arrMembers.filter(member => member.realm === department);
   }
 
+  function createCells () {
+    
+    const daysInCurrentMonth = currentDate
+      .clone()
+      .endOf("month")
+      .format("DD")
+    // const chosenDate = new Date(this.date.getFullYear(), this.date.getMonth(), index);
+    // const [dayName, , date] = dateFormatter.format(chosenDate).replace(",", "").split(" ");
+    // const isWeekend = dayName === "Sat" || dayName === "Sun";
+
+    for(let i = 1; i<=daysInCurrentMonth; i++) {
+      arrDays.push(i)
+    }
+    return arrDays;
+  }
+
   return (
     <div className="wrapper">
         <Moment/>
-      <MonthSwitcher date={date} setDate={setDate}/>
+      <MonthSwitcher currentDate={currentDate} setCurrentDate={setCurrentDate}/>
       <div className="table-wrapper">
         <table>
-          <TableHead/>
+          <thead>
+            <TableHead currentDate={currentDate} setCurrentDate={setCurrentDate} createCells={createCells} arrDays={arrDays}/>
+          </thead>
           {getDepartments().map((department) =>
-          <TableBody members = { getDepartment(department, members)} department = {department}/>)
-          }
-          <TableFooter/>         
+          <tbody>
+            <TableBody members = { getDepartment(department, members)} department = {department}/>
+          </tbody>
+          )}
+            <TableFooter/>
         </table>
       </div>
       <MonthVacationCounter/>

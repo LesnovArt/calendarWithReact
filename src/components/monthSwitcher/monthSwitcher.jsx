@@ -1,15 +1,15 @@
 import React from "react";
 import style from "./monthSwitcher.module.scss";
 
-function MonthSwitcher({ date, setDate }) {
+function MonthSwitcher({ currentDate, setCurrentDate }) {
   function currentMonthName() {
-    return date.format("MMMM");
+    return currentDate.format("MMMM");
   }
   function prevMonth() {
-    return date.clone().subtract(1, "month");
+    return currentDate.clone().subtract(1, "month");
   }
   function nextMonth() {
-    return date.clone().add(1, "month");
+    return currentDate.clone().add(1, "month");
   }
 
   return (
@@ -17,7 +17,7 @@ function MonthSwitcher({ date, setDate }) {
       <button
         className="navBtn prevMonth"
         onClick={() => {
-          setDate(prevMonth());
+          setCurrentDate(prevMonth());
         }}
       >
         <i className="fas icon icon-Arrow-2">left</i>
@@ -26,7 +26,7 @@ function MonthSwitcher({ date, setDate }) {
       <button
         className="navBtn nextMonth"
         onClick={() => {
-          setDate(nextMonth());
+          setCurrentDate(nextMonth());
         }}
       >
         <i className="fas icon icon-Arrow-3">right</i>
