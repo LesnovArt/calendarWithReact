@@ -1,24 +1,25 @@
 import React from "react";
 import style from "./tableHead.module.scss";
 
-function TableHead({currentDate, setCurrentDate, createCells, arrDays}) {
-  console.log(arrDays)
-    return <thead>
+function TableHead({ currentDate, createCells }) {
+  return (
+    <thead>
       <tr>
         <td className="addVacationCell outputItem ">
           <button className="addVacationBtn">
             <span>+</span>Add Vacation
           </button>
         </td>
-        {createCells().map((day, index) =>
+        {createCells().map((index) => (
           <td className="outputItem">
-            <span className="outputDay">{currentDate.format('dd')}</span>
+            <span className="outputDay">{currentDate.format("dd")}</span>
             <span className="outputDate">{index + 1}</span>
           </td>
-        )}
+        ))}
         <td className="sumCell outputItem weekend">Sum</td>
       </tr>
     </thead>
+  );
 }
 
 export default TableHead;
@@ -45,7 +46,7 @@ export default TableHead;
 //       const [dayName, , date] = dateFormatter.format(chosenDate).replace(",", "").split(" ");
 //       const isWeekend = dayName === "Sat" || dayName === "Sun";
 //       outputCalendarHTML += `<td class="outputItem ${isWeekend ? "weekend" : ""}">
-//                 <span class="outputDay">${dayName.slice(0, -1)}</span> 
+//                 <span class="outputDay">${dayName.slice(0, -1)}</span>
 //                 <span class="outputDate">${date}</span>
 //                 </td>`;
 //     }
@@ -69,7 +70,7 @@ export default TableHead;
 //         const newCell = document.createElement("td");
 //         newCell.className = "outputItem";
 //         newCell.innerHTML = `
-//                                 <span class="outputDay"></span> 
+//                                 <span class="outputDay"></span>
 //                                 <span class="outputDate">${index + 1}</span>`;
 //         daysList.push(newCell);
 //         daysList[index - 1].after(newCell);

@@ -6,6 +6,7 @@ function MonthSwitcher({ currentDate, setCurrentDate }) {
     return currentDate.format("MMMM");
   }
   function prevMonth() {
+    console.log(currentDate)
     return currentDate.clone().subtract(1, "month");
   }
   function nextMonth() {
