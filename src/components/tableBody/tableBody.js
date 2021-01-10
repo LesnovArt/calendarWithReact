@@ -1,10 +1,10 @@
 import React from "react";
+import { useState } from 'react'
 import TeamHead from "../teamHead/teamHead";
 import TeamBody from "../teamBody/teamBody";
 import style from "./tableBody.module.scss";
 
 function TableBody(props) {
-    console.log(props)
     
     let color;    
     (function departmentColor (){
@@ -18,6 +18,9 @@ function TableBody(props) {
         case 'Designers':
             color = 'rgba(255, 153, 153, '
             break;
+        case 'Manager':
+            color = 'rgba(255, 167, 104, '
+            break;
         default:
             // let randomColor = Math.floor(Math.random()*16777215).toString(16);
             // color = "#" + randomColor;
@@ -30,19 +33,22 @@ function TableBody(props) {
         }
     })()
 
+    const [isHide, setToggleDepartment] = useState(false)
 
-
-    function toggleDepartment (department){
-        // isHide = !isHide
-
+    function toggleDepartment (){
+        setToggleDepartment (prevCount => !prevCount)
     }
-    
+
     return (
+        
         <tbody className = "tableBody">
             <TeamHead teamName = {props.department} members = {props.members} color = {color} toggleDepartment = {toggleDepartment}/> 
-            { props.members.map((member) =>
-            <TeamBody member = {member} color = {color}/>)
+            {
+                props.members.map((member) =>
+                   <TeamBody member = {member} color = {color} isHide = {isHide}/>
+               )
             }
+            
         </tbody>
     );
 }
