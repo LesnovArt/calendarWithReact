@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 
 function App() {
 
-  const [members, setPost] = useState([1])
+  const [members, setPost] = useState([])
 
   useEffect(() => {
   axios
@@ -26,7 +26,10 @@ function App() {
           })
   },[])
 
+
+
   function getDepartments (){
+
     let arrOfDepartments = []
     for(let i = 0; i<members.length; i++){
       arrOfDepartments.push(members[i].realm)
@@ -37,8 +40,7 @@ function App() {
     set.add(arrOfDepartments[i])
     }
     let departments = Array.from (set);
-    departments.sort()
-
+  
     return departments
   }
 
@@ -48,7 +50,7 @@ function App() {
  
   return (
     <div className="wrapper">
-        <Moment/>
+        {/* <Moment/> */}
       <MonthSwitcher/>
       <div className="table-wrapper">
         <table>
@@ -61,6 +63,7 @@ function App() {
       </div>
       <MonthVacationCounter/>
     </div>
+
   );
 }
 

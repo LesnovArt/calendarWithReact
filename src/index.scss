@@ -34,6 +34,34 @@ tbody::after {
   height: 34px;
   border: 1px solid grey;
 }
-.memberName {
-  font-size: 15px;
+.department {
+  &_inform {
+    border: 1px solid grey;
+  }
+  &_title {
+     font-size: 20px;
+     font-weight: bold;
+  }
+  &_countMembersIcon{
+    display: inline-block;
+    margin-left: 15px;
+  }
+  &_procent {
+    display: inline-block;
+    margin-left: 15px;
+  }
+  &_hideArrow {
+    display: inline-block;
+    margin-left: 15px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
+.member {
+  &_name {
+    font-size: 15px;
+    border: 1px solid grey;
+  }
+}
+

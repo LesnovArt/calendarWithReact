@@ -1,3 +1,4 @@
+// import React from "react";
 // import { useState, useEffect } from 'react'
 // import axios from 'axios'
 
@@ -14,9 +15,9 @@
 // 				console.log(err)
 //             })
 // 	},[])
-
+// console.log(posts)
 //     return (
-//         posts
+//         <h1>8</h1>
 //     )
 // }
 

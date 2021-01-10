@@ -2,16 +2,23 @@ import React from "react";
 import style from "./teamBody.module.scss";
 
 function TeamBody(props) {
-    // console.log(props.member)
+
+    const color = {
+        borderLeft: '3px solid ' + props.color + ' 1)',
+      };
+
+
     let arrDays= []
     for(let i = 1; i<31; i++) {
         arrDays.push(i)
     }
     return (
-    <tr>
-        <td><h1 className="memberName">{props.member.name}</h1></td>
+    <tr className="member">
+        <td className="member_name" style={color}>
+            <span>{props.member.name}</span>
+        </td>
         {arrDays.map((day) =>
-            <td className='day'></td>)
+            <td className='member_day day'></td>)
         }
     </tr>
     )
