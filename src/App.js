@@ -8,11 +8,12 @@ import TableFooter from "./components/tableFooter/tableFooter";
 import MonthVacationCounter from "./components/monthVacationCounter/monthVacationCounter";
 import Moment from 'react-moment';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 // import Data from "./components/Data/Data";
 
 
 function App() {
-
+  const [ date, setDate] = useState(moment())
   const [members, setPost] = useState([1])
 
   useEffect(() => {
@@ -45,11 +46,11 @@ function App() {
   function getDepartment(department, arrMembers) {
     return arrMembers.filter(member => member.realm === department);
   }
- 
+
   return (
     <div className="wrapper">
         <Moment/>
-      <MonthSwitcher/>
+      <MonthSwitcher date={date} setDate={setDate}/>
       <div className="table-wrapper">
         <table>
           <TableHead/>
