@@ -46,7 +46,7 @@ function App() {
   }
 
   const arrDays = createCells(currentDate.startOf("month"));
-  
+ console.log(arrDays)
   return (
     <div className="wrapper">
       <MonthSwitcher currentDate={currentDate} setCurrentDate={setCurrentDate} />

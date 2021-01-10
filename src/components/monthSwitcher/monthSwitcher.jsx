@@ -3,7 +3,7 @@ import style from "./monthSwitcher.module.scss";
 
 function MonthSwitcher({ currentDate, setCurrentDate }) {
   function currentMonthName() {
-    return currentDate.format("MMMM");
+    return currentDate.format("MMMM YYYY");
   }
   function prevMonth() {
     return currentDate.clone().subtract(1, "month");
