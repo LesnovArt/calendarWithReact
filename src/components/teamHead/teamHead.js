@@ -13,8 +13,6 @@ function TeamHead(props) {
         arrDays.push(i)
     }
 
-   console.log(props)
-
     return (
         <tr className="department" style={color}>
             <td className="department_inform">

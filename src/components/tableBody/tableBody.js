@@ -4,9 +4,7 @@ import TeamBody from "../teamBody/teamBody";
 import style from "./tableBody.module.scss";
 
 function TableBody(props) {
-    console.log(props)
-    
-    let color;    
+    let color;
     (function departmentColor (){
         switch (props.department) {
         case 'Frontend Team':

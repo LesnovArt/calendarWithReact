@@ -1,3 +1,11 @@
+$front-color: #9b99ff;
+$designer-color: #7aafff;
+$backend-color: #ff9999;
+$manager-color: #ffa768;
+$main-row: #F3F3F3;
+$teamHeader-bg: rgba(155, 153, 255, 0.1);
+$btn-bg: #48BA46;
+
 *{
   box-sizing: border-box;
 }
@@ -28,6 +36,19 @@ tbody::after {
   height: 34px;
   display: block;
   content: " ";
+}
+td {
+  border: 1px solid #D7D7D7;
+}
+button {
+  cursor: pointer;
+  display: inline-block;
+  border: none;
+  outline: none;
+  transition: opacity 0.2s;
+}
+button:hover {
+  opacity: 0.8;
 }
 .day {
   width: 34px;

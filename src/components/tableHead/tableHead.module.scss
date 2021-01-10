@@ -1,0 +1,88 @@
+$btn-bg: #48BA46;
+
+.calendarRow {
+
+    &__addVacationBtn {
+    width: 144px;
+    height: 40px;
+    background: $btn-bg;
+    border-radius: 7px;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    line-height: 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    &__outputItem {
+    height: 64px;
+    width: 34px;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    line-height: 28px;
+  }
+
+  &__addVacationCell {
+    max-width: fit-content;
+    padding: 0 119px 24px 0;
+    margin: 0;
+    border-top: none;
+    border-left: none;
+    height: 64px;
+  }
+
+  &__outputDay {
+    display: inline-block;
+    padding: 7px;
+    text-align: center;
+    color: #000;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  &__outputDate {
+    display: inline-block;
+    text-align: center;
+    color: #000;
+    font-size: 14;
+    font-weight: 600;
+    line-height: 21px;
+  }
+}
+
+.sumCell {
+  height: 64px;
+  width: 34px;
+  font-size: 12px;
+  line-height: 18px;
+  background: #F0F0F0;
+  line-height: 28px;
+  border: 1px solid rgb(192, 192, 192);
+  background: #F0F0F0;
+}
+
+.plus{
+  font-size: 24px;
+  padding-right: 10px;
+}
+
+.weekend {
+  height: 64px;
+  width: 34px;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  line-height: 28px;
+  border: 1px solid rgb(192, 192, 192);
+  background: #F0F0F0;
+}
+
+
+
+
+
+
+
