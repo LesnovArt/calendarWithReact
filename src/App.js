@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import axios from "axios";
 import MonthSwitcher from "./components/monthSwitcher/monthSwitcher";
 import TableHead from "./components/tableHead/tabelHead";
 import TableBody from "./components/tableBody/tableBody";
