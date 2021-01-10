@@ -13,14 +13,14 @@ function TeamHead(props) {
         arrDays.push(i)
     }
 
-   console.log(props)
+
 
     return (
         <tr className="department" style={color}>
             <td className="department_inform">
                 <span className="department_title">{props.teamName}</span>
                 <span class="department_countMembersIcon">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {/* <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g opacity="0.5" clip-path="url(#clip0)">
                         <path
                         d="M10.2676 6.40607H9.3396C9.43419 6.66505 9.48587 6.94454 9.48587 7.23585V10.7433C9.48587 10.8647 9.46473 10.9813 9.42627 11.0897H10.9605C11.5336 11.0897 11.9999 10.6235 11.9999 10.0504V8.13831C11.9999 7.18316 11.2228 6.40607 10.2676 6.40607Z"
@@ -46,7 +46,7 @@ function TeamHead(props) {
                         <rect width="12" height="12" fill="white" transform="translate(0 0.00012207)" />
                         </clipPath>
                     </defs>
-                    </svg>
+                    </svg> */}
                 </span>
                 <span className="department_countMembers">{props.members.length}</span>
                 <span className="department_procent">8%</span>

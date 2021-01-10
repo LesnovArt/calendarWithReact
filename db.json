@@ -35,6 +35,18 @@
       "name": "DS_User_1",
       "realm": "Designers",
       "vacation": []
+    },
+    {
+      "id": 7,
+      "name": "MS_User_1",
+      "realm": "Manager",
+      "vacation": []
+    },
+    {
+      "id": 8,
+      "name": "MS_User_2",
+      "realm": "Manager",
+      "vacation": []
     }
   ],
   "vacations": [
