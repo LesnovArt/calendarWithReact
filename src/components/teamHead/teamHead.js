@@ -1,18 +1,20 @@
 import React from "react";
+import { useState } from 'react'
 import style from "./teamHead.module.scss";
+import classNames from "classnames"
 
 function TeamHead(props) {
-
+    const [rotateArrow, setClass] = useState(false)
     const color = {
         borderLeft: '3px solid ' + props.color + ' 1)',
         background: props.color + ' 0.2)',
       };
 
-    let arrDays= []
-    for(let i = 1; i<31; i++) {
-        arrDays.push(i)
+    function clickArrow(){
+       props.toggleDepartment(props.teamName)
+       setClass(prevCount => !prevCount)
     }
-
+    let wrapperClass = classNames('department_hideArrow', { 'rotateArrow': rotateArrow === true })
     return (
         <tr className="department" style={color}>
             <td className="department_inform">
@@ -48,13 +50,16 @@ function TeamHead(props) {
                 </span>
                 <span className="department_countMembers">{props.members.length}</span>
                 <span className="department_procent">8%</span>
-                <span className="department_hideArrow" onClick = {() => props.toggleDepartment(props.teamName)}><i className="icon icon-chevron-down-solid"></i></span>
+                <span className={wrapperClass} onClick = {() => clickArrow()}><i className="icon icon-chevron-down-solid"></i></span>
 
                 {/* <span><i className="icon icon-001-group"></i></span> */}
             </td>
-            {arrDays.map(() =>
+            {props.arrDays.map(() =>
                 <td className='department_day day'></td>)
             }
+            <td className="'department_sum day">
+                <span></span>
+            </td>             
         </tr>
         )
 }

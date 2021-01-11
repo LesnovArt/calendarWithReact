@@ -42,10 +42,10 @@ function TableBody(props) {
     return (
         
         <tbody className = "tableBody">
-            <TeamHead teamName = {props.department} members = {props.members} color = {color} toggleDepartment = {toggleDepartment}/> 
+            <TeamHead teamName = {props.department} members = {props.members} color = {color} toggleDepartment = {toggleDepartment} arrDays={props.arrDays}/> 
             {
                 props.members.map((member) =>
-                   <TeamBody member = {member} color = {color} isHide = {isHide}/>
+                   <TeamBody member = {member} color = {color} isHide = {isHide} arrDays={props.arrDays}/>
                )
             }
             

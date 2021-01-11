@@ -46,7 +46,6 @@ function App() {
   }
 
   const arrDays = createCells(currentDate.startOf("month"));
- console.log(arrDays)
   return (
     <div className="wrapper">
       <MonthSwitcher currentDate={currentDate} setCurrentDate={setCurrentDate} />
@@ -56,7 +55,7 @@ function App() {
             <TableHead currentDate={currentDate} arrDays={arrDays} createCells={createCells}/>
           </thead>
           {getDepartments().map((department) => (
-              <TableBody members={getDepartment(department, members)} department={department} />
+              <TableBody members={getDepartment(department, members)} department={department} arrDays={arrDays}/>
           ))}
           <TableFooter />
         </table>

@@ -51,13 +51,13 @@ button:hover {
   opacity: 0.8;
 }
 .day {
-  width: 34px;
+  min-width: 34px;
   height: 34px;
-  border: 1px solid grey;
+  border: 1px solid #D7D7D7;
 }
 .department {
   &_inform {
-    border: 1px solid grey;
+    border: 1px solid #D7D7D7;
   }
   &_title {
      font-size: 20px;
@@ -82,7 +82,20 @@ button:hover {
 .member {
   &_name {
     font-size: 15px;
-    border: 1px solid grey;
+    border: 1px solid #D7D7D7;
   }
+  &_sum {
+    text-align: center;
+  }
+
 }
 
+.rotateArrow {
+  i {
+     transform: rotate(180deg);
+    }
+
+}
+.restDay {
+  background: #F0F0F0;
+}
