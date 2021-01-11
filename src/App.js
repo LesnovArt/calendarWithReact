@@ -1,19 +1,25 @@
 import React from "react";
-import { useState, useEffect } from 'react'
+import { useState, useEffect, createContext } from 'react'
 import axios from "axios";
 import MonthSwitcher from "./components/monthSwitcher/monthSwitcher";
 import TableHead from "./components/tableHead/tabelHead";
 import TableBody from "./components/tableBody/tableBody";
 import TableFooter from "./components/tableFooter/tableFooter";
 import MonthVacationCounter from "./components/monthVacationCounter/monthVacationCounter";
-import Moment from 'react-moment';
 import PropTypes from 'prop-types';
+import Popup from "./components/popup/popup";
 // import Data from "./components/Data/Data";
 
+export const PopupContext = createContext();
 
 function App() {
 
-  const [members, setPost] = useState([])
+  const [members, setPost] = useState([]);
+  const [isPopupShow, setIsPopupShow] = useState(true);
+
+  function togglePopup (){
+    setIsPopupShow( prev => prev = !prev)
+  }
 
   useEffect(() => {
   axios
@@ -50,7 +56,6 @@ function App() {
  
   return (
     <div className="wrapper">
-        {/* <Moment/> */}
       <MonthSwitcher/>
       <div className="table-wrapper">
         <table>
@@ -62,6 +67,9 @@ function App() {
         </table>
       </div>
       <MonthVacationCounter/>
+      <PopupContext.Provider value={togglePopup}>
+        { isPopupShow && <Popup/> }
+      </PopupContext.Provider>
     </div>
 
   );
