@@ -1,3 +1,11 @@
+$front-color: #9b99ff;
+$designer-color: #7aafff;
+$backend-color: #ff9999;
+$manager-color: #ffa768;
+$main-row: #F3F3F3;
+$teamHeader-bg: rgba(155, 153, 255, 0.1);
+$btn-bg: #48BA46;
+
 *{
   box-sizing: border-box;
 }
@@ -29,14 +37,27 @@ tbody::after {
   display: block;
   content: " ";
 }
+td {
+  border: 1px solid #D7D7D7;
+}
+button {
+  cursor: pointer;
+  display: inline-block;
+  border: none;
+  outline: none;
+  transition: opacity 0.2s;
+}
+button:hover {
+  opacity: 0.8;
+}
 .day {
-  width: 34px;
+  min-width: 34px;
   height: 34px;
-  border: 1px solid grey;
+  border: 1px solid #D7D7D7;
 }
 .department {
   &_inform {
-    border: 1px solid grey;
+    border: 1px solid #D7D7D7;
   }
   &_title {
      font-size: 20px;
@@ -61,7 +82,20 @@ tbody::after {
 .member {
   &_name {
     font-size: 15px;
-    border: 1px solid grey;
+    border: 1px solid #D7D7D7;
   }
+  &_sum {
+    text-align: center;
+  }
+
 }
 
+.rotateArrow {
+  i {
+     transform: rotate(180deg);
+    }
+
+}
+.restDay {
+  background: #F0F0F0;
+}

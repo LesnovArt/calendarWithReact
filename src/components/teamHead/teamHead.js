@@ -1,26 +1,26 @@
 import React from "react";
+import { useState } from 'react'
 import style from "./teamHead.module.scss";
+import classNames from "classnames"
 
 function TeamHead(props) {
-
+    const [rotateArrow, setClass] = useState(false)
     const color = {
         borderLeft: '3px solid ' + props.color + ' 1)',
         background: props.color + ' 0.2)',
       };
 
-    let arrDays= []
-    for(let i = 1; i<31; i++) {
-        arrDays.push(i)
+    function clickArrow(){
+       props.toggleDepartment(props.teamName)
+       setClass(prevCount => !prevCount)
     }
-
-   console.log(props)
-
+    let wrapperClass = classNames('department_hideArrow', { 'rotateArrow': rotateArrow === true })
     return (
         <tr className="department" style={color}>
             <td className="department_inform">
                 <span className="department_title">{props.teamName}</span>
                 <span class="department_countMembersIcon">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {/* <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g opacity="0.5" clip-path="url(#clip0)">
                         <path
                         d="M10.2676 6.40607H9.3396C9.43419 6.66505 9.48587 6.94454 9.48587 7.23585V10.7433C9.48587 10.8647 9.46473 10.9813 9.42627 11.0897H10.9605C11.5336 11.0897 11.9999 10.6235 11.9999 10.0504V8.13831C11.9999 7.18316 11.2228 6.40607 10.2676 6.40607Z"
@@ -46,17 +46,20 @@ function TeamHead(props) {
                         <rect width="12" height="12" fill="white" transform="translate(0 0.00012207)" />
                         </clipPath>
                     </defs>
-                    </svg>
+                    </svg> */}
                 </span>
                 <span className="department_countMembers">{props.members.length}</span>
                 <span className="department_procent">8%</span>
-                <span className="department_hideArrow" onClick = {() => props.toggleDepartment(props.teamName)}><i className="icon icon-chevron-down-solid"></i></span>
+                <span className={wrapperClass} onClick = {() => clickArrow()}><i className="icon icon-chevron-down-solid"></i></span>
 
                 {/* <span><i className="icon icon-001-group"></i></span> */}
             </td>
-            {arrDays.map(() =>
+            {props.arrDays.map(() =>
                 <td className='department_day day'></td>)
             }
+            <td className="'department_sum day">
+                <span></span>
+            </td>             
         </tr>
         )
 }

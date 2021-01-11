@@ -1,3 +1,44 @@
+$teamHeader-bg: rgba(155, 153, 255, 0.1);
+
 .wrapper {
+  width: 100%;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 5px;
+  width: 300px;
+
+  &__navBtn {
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  transition: border 0.2s;
+  padding: 3px 3px;
+  &:hover {
+      border: 2px solid $teamHeader-bg;
+      background-color: $teamHeader-bg;
+    }
+  }
+
+  &__fas {
+  font-size: 12px;
+  padding: 5px;
+  }
+
+  &__chosenMonth {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+  margin: 25px 0px;
+  padding: 0 40px;
+  }
 }
+
+
+
+
+
+
+
+
