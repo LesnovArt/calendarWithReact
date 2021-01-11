@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import style from "./tableHead.module.scss";
+import { PopupContext } from "../../App";
 
 function TableHead({ currentDate, arrDays }) {
+  const isPopupShow = useContext(PopupContext);
   return (<tr className={style.calendarRow}>
         <td className={style.calendarRow__addVacationCell}>
-          <button className={style.calendarRow__addVacationBtn}>
+          <button className={style.calendarRow__addVacationBtn} onClick={()=> isPopupShow()}>
             <span className={style.plus}>+</span>Add Vacation
           </button>
         </td>
