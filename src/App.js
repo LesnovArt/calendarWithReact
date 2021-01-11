@@ -6,11 +6,11 @@ import TableHead from "./components/tableHead/tabelHead";
 import TableBody from "./components/tableBody/tableBody";
 import TableFooter from "./components/tableFooter/tableFooter";
 import MonthVacationCounter from "./components/monthVacationCounter/monthVacationCounter";
-import Moment from "react-moment";
 import PropTypes from "prop-types";
 import moment from "moment";
 import { createCells } from "./helpers/cellsCreator.js"
 import Popup from "./components/popup/popup";
+import ErrorBoundary from "./components/errorBoundary/errorBoundary";
 // import Data from "./components/Data/Data";
 
 export const PopupContext = createContext();
@@ -18,10 +18,10 @@ export const PopupContext = createContext();
 function App() {
   const [currentDate, setCurrentDate] = useState(moment());
   const [members, setPost] = useState([])
-  const [isPopupShow, setIsPopupShow] = useState(true);
+  const [isPopupShow, setIsPopupShow] = useState(false);
 
   function togglePopup (){
-    setIsPopupShow( prev => prev = !prev)
+    setIsPopupShow( prev => !prev)
   }
 
   useEffect(() => {
@@ -57,6 +57,8 @@ function App() {
   const arrDays = createCells(currentDate.startOf("month"));
   return (
     <div className="wrapper">
+      <ErrorBoundary>
+        <PopupContext.Provider value={togglePopup}>
       <MonthSwitcher currentDate={currentDate} setCurrentDate={setCurrentDate} />
       <div className="table-wrapper">
         <table>
@@ -70,10 +72,9 @@ function App() {
         </table>
       </div>
       <MonthVacationCounter />
-      <MonthVacationCounter/>
-      <PopupContext.Provider value={togglePopup}>
         { isPopupShow && <Popup/> }
       </PopupContext.Provider>
+      </ErrorBoundary>
     </div>
 
   );
