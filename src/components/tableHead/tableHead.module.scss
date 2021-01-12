@@ -1,10 +1,12 @@
 $btn-bg: #48BA46;
 
 .calendarRow {
+    max-height: 64px;
+    text-align: center;
 
     &__addVacationBtn {
     width: 144px;
-    height: 40px;
+    min-height: 40px;
     background: $btn-bg;
     border-radius: 7px;
     border: none;
@@ -17,12 +19,11 @@ $btn-bg: #48BA46;
     }
 
     &__outputItem {
-    height: 64px;
     width: 34px;
-    text-align: center;
+    line-height: 28px;
     flex-direction: column;
     align-items: center;
-    line-height: 28px;
+    border: 1px solid rgb(192, 192, 192);
   }
 
   &__addVacationCell {
@@ -31,14 +32,11 @@ $btn-bg: #48BA46;
     margin: 0;
     border-top: none;
     border-left: none;
-    height: 64px;
   }
 
   &__outputDay {
     display: block;
     padding: 7px;
-    text-align: center;
-    color: #000;
     font-size: 12px;
     line-height: 18px;
   }
@@ -54,14 +52,11 @@ $btn-bg: #48BA46;
 }
 
 .sumCell {
-  height: 64px;
   width: 34px;
   font-size: 12px;
   line-height: 18px;
   background: #F0F0F0;
-  line-height: 28px;
   border: 1px solid rgb(192, 192, 192);
-  background: #F0F0F0;
 }
 
 .plus{
@@ -70,12 +65,10 @@ $btn-bg: #48BA46;
 }
 
 .weekend {
-  height: 64px;
   width: 34px;
-  text-align: center;
+  line-height: 28px;
   flex-direction: column;
   align-items: center;
-  line-height: 28px;
   border: 1px solid rgb(192, 192, 192);
   background: #F0F0F0;
 }
