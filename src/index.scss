@@ -119,5 +119,7 @@ button:hover {
   // color: #fff;
   // margin-bottom: 2px;
 
-  
+  &:hover {
+    cursor: pointer;
+  }
 }

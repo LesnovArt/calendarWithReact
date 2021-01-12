@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./teamBody.module.scss";
 import classNames from "classnames"
-import { useState, useEffect  } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 function TeamBody(props) {
     const [arrVacations, setVacation] = useState([])
@@ -23,25 +23,31 @@ function TeamBody(props) {
         .catch((err) => {
             console.log(err);
         });
+        
     }, []);
-  
+
+
     function convertedDate(day){
         return new Date(day.split(".").reverse().join("-"))
     }
-
-    (function findMember (vacations) {
-        let arrVacationsCurrentMember = vacations.filter(element => element.userId === props.member.id);
-        vacationInCurrentMonth (arrVacationsCurrentMember) 
-    })(arrVacations)
-
-    function getObjVacation(start,end) {
+    function getObjVacation(id,start,end) {
         return {
+            id: id,
             start: start,
             end: end,
             getDuraction () {
                 return this.end - this.start
             }
         }
+    }
+
+    if(arrVacations) {
+        (function findMember (vacations) {
+            let arrVacationsCurrentMember = vacations.filter(element => element.userId === props.member.id);
+            
+            vacationInCurrentMonth (arrVacationsCurrentMember) 
+            
+        })(arrVacations)  
     }
 
     function vacationInCurrentMonth (arrVacationsCurrentMember) {
@@ -51,17 +57,38 @@ function TeamBody(props) {
             let startVacation = convertedDate(arrVacationsCurrentMember[i].startDate)
             let endVacation = convertedDate(arrVacationsCurrentMember[i].endDate)
             if(startVacation>=startMonth && endVacation<=endMonth) {
-                arrVacationInCurrentMonth.push(getObjVacation(new Date(startVacation.getTime()).getDate(),new Date(endVacation.getTime()).getDate()))
+                arrVacationInCurrentMonth.push(getObjVacation(arrVacationsCurrentMember[i].id,new Date(startVacation.getTime()).getDate(),new Date(endVacation.getTime()).getDate()))
             } else if(startVacation>=startMonth && startVacation<=endMonth && endVacation>=endMonth){
                 arrVacationInCurrentMonth.push(getObjVacation(new Date(startVacation.getTime()).getDate(),new Date(endMonth.getTime()).getDate()))
             } else if(startVacation<=startMonth && endVacation<=endMonth && endVacation>=startMonth){
                 arrVacationInCurrentMonth.push(getObjVacation(new Date(startMonth.getTime()).getDate(),new Date(endVacation.getTime()).getDate()))
-            }
-            else if(startVacation<=startMonth && endVacation>=endMonth){
+            } else if(startVacation<=startMonth && endVacation>=endMonth){
                 arrVacationInCurrentMonth.push(getObjVacation(new Date(startMonth.getTime()).getDate(),new Date(endMonth.getTime()).getDate()))
             }
         }  
     }
+        
+    function deleteVacation(element) {
+
+    let isDelete = window.confirm("Delete this vacation?")
+    let attribute = element.getAttribute('data-id');
+        
+    const url = `http://localhost:3004/vacations/${attribute}`;   
+
+        if(isDelete){
+            axios
+            .delete(url)
+            .then((res) => {
+                setVacation(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
+        document.location.reload()
+        }
+    }
+
     if(!props.isHide){
         return (
             <tr className="member" >
@@ -71,9 +98,9 @@ function TeamBody(props) {
                 {props.arrDays.map((day) =>{
                     let wrapperClass = classNames('member_day','day', { 'restDay': day.dayName === 'Sa' ||  day.dayName === 'Su'})
                     if(arrVacationInCurrentMonth && arrVacationInCurrentMonth.length) {
-
-                        if(arrVacationInCurrentMonth.filter((item) => +day.dayOfMonth >= +item.start && +day.dayOfMonth <= +item.end).length) {
-                            return <td className="day"><span className="day vacations" style={backgroundColor}></span></td>
+                        let vacationAtCurrentDay = arrVacationInCurrentMonth.filter((item) => +day.dayOfMonth >= +item.start && +day.dayOfMonth <= +item.end)
+                        if(vacationAtCurrentDay.length) {
+                            return <td className={wrapperClass} data-id={vacationAtCurrentDay[0].id} onClick={(e)=>deleteVacation(e.target.closest("td"))}><span className="day vacations" style={backgroundColor}></span></td>
                         } else {
                             return <td className={wrapperClass}></td>  
                         }

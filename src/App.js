@@ -53,8 +53,10 @@ function App() {
   function getDepartment(department, arrMembers) {
     return arrMembers.filter((member) => member.realm === department);
   }
+
+console.log(members)
 //  const members = getDepartments();
- console.log(members.length)
+
   const arrDays = createCells(currentDate.startOf("month"));
   return (
     <div className="wrapper">
