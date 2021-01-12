@@ -1,11 +1,24 @@
 import React from "react";
-import { useState } from 'react'
+import { useState, useEffect  } from 'react'
 import TeamHead from "../teamHead/teamHead";
 import TeamBody from "../teamBody/teamBody";
 import style from "./tableBody.module.scss";
+import axios from 'axios'
 
 function TableBody(props) {
-
+//     const [vacations, setVacation] = useState([])
+//     useEffect(() => {
+//         axios
+//           .get(`http://localhost:3004/vacations`)
+//           .then((res) => {
+//             setVacation(res.data);
+//           })
+//           .catch((err) => {
+//             console.log(err);
+//           });
+//       }, []);
+// console.log(props)      
+// console.log(vacations)
     let color;
     (function departmentColor (){
         switch (props.department) {
