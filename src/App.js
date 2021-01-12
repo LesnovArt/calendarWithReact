@@ -20,8 +20,8 @@ export const PopupContext = createContext();
 function App() {
   const [currentDate, setCurrentDate] = useState(moment());
   const [members, setPost] = useState([])
-  const [isPopupShow, setIsPopupShow] = useState(true);
-  const [hasError, setHasError] = useState(true);
+  const [isPopupShow, setIsPopupShow] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   function togglePopup (){
     setIsPopupShow( prev => !prev);

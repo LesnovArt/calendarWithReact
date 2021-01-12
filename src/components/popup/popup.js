@@ -8,7 +8,7 @@ export default function Popup (props) {
 
     return (
         <div className={styles.popup} onClick={()=> {
-          togglePopup();
+          // togglePopup();
           hideError();
         }}>
           {props.children}
