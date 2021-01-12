@@ -27,8 +27,12 @@ function App() {
     setIsPopupShow( prev => !prev);
   }
 
-  function toggleError () {
-    setHasError( prev => !prev);
+  function showError () {
+    setHasError( prev => prev = true);
+  }
+
+  function hideError () {
+    setHasError( prev => prev = false);
   }
 
   useEffect(() => {
@@ -63,15 +67,17 @@ function App() {
 //  const members = getDepartments();
  console.log(members.length)
   const arrDays = createCells(currentDate.startOf("month"));
+
   return (
     <div className="wrapper">
       <ErrorBoundary
-        toggleError = {toggleError}
+        showError = {showError}
         togglePopup = {togglePopup}
       >
         <PopupContext.Provider value={{
           togglePopup: togglePopup,
-          toggleError: toggleError
+          showError: showError,
+          hideError: hideError
         }}>
       <MonthSwitcher currentDate={currentDate} setCurrentDate={setCurrentDate} />
       <div className="table-wrapper">

@@ -8,7 +8,7 @@ export default class  ErrorBoundary extends Component {
     }
 
     componentDidCatch(error, errorInfo) {
-        this.props.toggleError();
+        this.props.showError();
         this.props.togglePopup();
     }
 
