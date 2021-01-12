@@ -1,11 +1,24 @@
 import React from "react";
-import { useState } from 'react'
+import { useState, useEffect  } from 'react'
 import TeamHead from "../teamHead/teamHead";
 import TeamBody from "../teamBody/teamBody";
 import style from "./tableBody.module.scss";
+import axios from 'axios'
 
 function TableBody(props) {
-
+//     const [vacations, setVacation] = useState([])
+//     useEffect(() => {
+//         axios
+//           .get(`http://localhost:3004/vacations`)
+//           .then((res) => {
+//             setVacation(res.data);
+//           })
+//           .catch((err) => {
+//             console.log(err);
+//           });
+//       }, []);
+// console.log(props)      
+// console.log(vacations)
     let color;
     (function departmentColor (){
         switch (props.department) {
@@ -22,14 +35,11 @@ function TableBody(props) {
             color = 'rgba(255, 167, 104, '
             break;
         default:
-            // let randomColor = Math.floor(Math.random()*16777215).toString(16);
-            // color = "#" + randomColor;
             const randomBetween = (min, max) => min + Math.floor(Math.random() * (max - min + 1));
             const r = randomBetween(0, 255);
             const g = randomBetween(0, 255);
             const b = randomBetween(0, 255);
             color = `rgba(${r},${g},${b}, `
-
         }
     })()
 
@@ -38,7 +48,6 @@ function TableBody(props) {
     function toggleDepartment (){
         setToggleDepartment (prevCount => !prevCount)
     }
-
     return (
         
         <tbody className = "tableBody">
