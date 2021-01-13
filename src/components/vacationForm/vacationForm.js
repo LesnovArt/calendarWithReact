@@ -48,7 +48,7 @@ export default function VacationForm () {
                       <optgroup>
                         {members.map(member => {
                           return (
-                            <option value={member.id}>{member.name}</option>
+                            <option value={member.id} id={member.id} key={member.id}>{member.name}</option>
                           )
                         })}
                       </optgroup>
@@ -76,7 +76,7 @@ export default function VacationForm () {
                     <select className={styles.form__vacationType} >
                       {vacationTypesArr.map((type, index) =>{
                         return(
-                          <option value={index}>{type}</option>
+                          <option value={index} id={index} key={index}>{type}</option>
                         )
                       })}
                     </select>
