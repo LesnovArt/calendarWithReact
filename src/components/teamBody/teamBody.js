@@ -3,6 +3,7 @@ import style from "./teamBody.module.scss";
 import classNames from "classnames"
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+
 function TeamBody(props) {
     let arrVacationInCurrentMonth =  []
     let arrVacationCurrentMember = props.member.vacations;

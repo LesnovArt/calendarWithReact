@@ -1,7 +1,117 @@
-.vacationForm{
+.form {
   width: 417px;
-  height: 397px;
   background-color: #ffffff;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
+  .form__header {
+    background-color: #eaeaea;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 27px 14px 31px;
+    .form__title {
+      color: #575757;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .form__counter {
+      color: #666666;
+      font-size: 14px;
+      font-weight: 600;
+      span.form__counterDays {
+        margin-right: 6px;
+      }
+      span.form__counterText {}
+    }
+  }
+  .form__body {
+    padding: 15px 27px;
+    .subtitle {
+      color: #000000;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .form__users {
+      .form__usersSubtitle {}
+      select.form__users {
+        width: 339px;
+        height: 41px;
+        border-radius: 3px;
+        background-color: #e9e9e9;
+        color: #000000;
+        font-size: 12px;
+        font-weight: 400;
+        border: none;
+        padding-left: 17px;
+        option {}
+      }
+    }
+    .form__date {
+      margin-top: 34px;
+      .input{
+        width: 149px;
+        border: none;
+        border-bottom: 1px solid #d0d0d0; ;
+      }
+      .form__dateSubtitle {}
+      .form__dateInputsWrapper {
+        display: flex;
+        justify-content: space-between;
+        .form__dateInputWrapper {
+          display: flex;
+          flex-direction: column;
+          span.form__dateInputName {
+            color: #000000;
+            font-size: 14px;
+            font-weight: 400;
+            margin-bottom: 5px;
+          }
+          input.form__dateInputStart{}
+          input.form__dateInputEnd{}
+        }
+      }
+    }
+    .form__vacation {
+      margin-top: 34px;
+      .form__vacation-subtitle {}
+      select.form__vacationType {
+        width: 339px;
+        height: 41px;
+        border-radius: 3px;
+        background-color: #e9e9e9;
+        color: #000000;
+        font-size: 12px;
+        font-weight: 400;
+        border: none;
+        padding-left: 17px;
+        option {}
+      }
+    }
+  }
+  .form__footer {
+    border-top: 1px solid #dbdbdb;
+    padding: 13px 25px 22px;
+    display: flex;
+    justify-content: space-between;
+
+    .btn{
+      width: 154px;
+      height: 42px;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      border-radius: 5px;
+      background-color: #ffffff;
+      border: 1px solid #d0d0d0;
+    }
+    button.form__footerCancelBtn {
+      color: #000;
+    }
+    button.form__footerSendBtn {
+      color: #fff;
+      background-color: #48ba46;
+    }
+  }
 }
+

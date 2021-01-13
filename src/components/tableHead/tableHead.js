@@ -3,10 +3,10 @@ import style from "./tableHead.module.scss";
 import { PopupContext } from "../../App";
 
 function TableHead({ arrDays }) {
-  const isPopupShow = useContext(PopupContext);
+  const { togglePopup } = useContext(PopupContext);
   return (<tr className={style.calendarRow}>
         <td className={style.calendarRow__addVacationCell}>
-          <button className={style.calendarRow__addVacationBtn} onClick={()=> isPopupShow()}>
+          <button className={style.calendarRow__addVacationBtn} onClick={()=> togglePopup()}>
             <span className={style.plus}>+</span>Add Vacation
           </button>
         </td>

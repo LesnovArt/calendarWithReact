@@ -11,6 +11,8 @@ import moment from "moment";
 import { createCells } from "./helpers/cellsCreator.js"
 import Popup from "./components/popup/popup";
 import ErrorBoundary from "./components/errorBoundary/errorBoundary";
+import VacationForm from "./components/vacationForm/vacationForm";
+import ErrorMessage from "./components/errorMessage/errorMessage";
 // import Data from "./components/Data/Data";
 
 export const PopupContext = createContext();
@@ -20,9 +22,18 @@ function App() {
   const [users, setUsers] = useState([])
   const [vacations, setVacations] = useState([])
   const [isPopupShow, setIsPopupShow] = useState(false);
-  
+  const [hasError, setHasError] = useState(false);
+
   function togglePopup (){
-    setIsPopupShow( prev => !prev)
+    setIsPopupShow( prev => !prev);
+  }
+
+  function showError () {
+    setHasError( prev => prev = true);
+  }
+
+  function hideError () {
+    setHasError( prev => prev = false);
   }
   useEffect(() => {
     axios
@@ -112,8 +123,16 @@ function addVacationToUser(arrVacation,departmentMember) {
   const arrDays = createCells(currentDate.startOf("month"));
         return (
       <div className="wrapper">
-        <ErrorBoundary>
-          <PopupContext.Provider value={togglePopup}>
+      <ErrorBoundary
+        showError = {showError}
+        togglePopup = {togglePopup}
+      >
+        <PopupContext.Provider value={{
+          togglePopup: togglePopup,
+          showError: showError,
+          hideError: hideError,
+          members: members
+        }}>
         <MonthSwitcher currentDate={currentDate} setCurrentDate={setCurrentDate} />
         <div className="table-wrapper">
           <table>
@@ -127,7 +146,11 @@ function addVacationToUser(arrVacation,departmentMember) {
           </table>
         </div>
         <MonthVacationCounter currentDate={currentDate} members={members}/>
-          { isPopupShow && <Popup/> }
+          { isPopupShow && 
+          <Popup>
+          {isPopupShow && !hasError ? <VacationForm/> : null}
+          {hasError && isPopupShow ? <ErrorMessage/>: null}
+        </Popup> }
         </PopupContext.Provider>
         </ErrorBoundary>
       </div>
