@@ -23,14 +23,10 @@ export default function VacationForm () {
     }
 
     if(startDate && endDate){
-      let start = Number(moment(startDate).format('D'));
-      let end = Number(moment(endDate).format('D'));
-      if (startDate && endDate){
-        vacationCounter = end - start;
-      }else if(vacationCounter >= 0){
-        [start,end] = [end,start];
-        vacationCounter *= -1;
-      }
+      let start = moment(startDate);
+      let end = moment(endDate);
+      let duration = moment.duration(start.diff(end));
+      duration > 0 ? vacationCounter = duration.asDays() : vacationCounter = duration.asDays() * -1;
     }
 
 
