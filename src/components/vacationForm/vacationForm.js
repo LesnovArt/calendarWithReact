@@ -23,14 +23,10 @@ export default function VacationForm () {
     }
 
     if(startDate && endDate){
-      let start = Number(moment(startDate).format('D'));
-      let end = Number(moment(endDate).format('D'));
-      if (startDate && endDate){
-        vacationCounter = end - start;
-      }else if(vacationCounter >= 0){
-        [start,end] = [end,start];
-        vacationCounter *= -1;
-      }
+      let start = moment(startDate);
+      let end = moment(endDate);
+      let duration = moment.duration(start.diff(end));
+      duration > 0 ? vacationCounter = duration.asDays() : vacationCounter = duration.asDays() * -1;
     }
 
 
@@ -52,7 +48,7 @@ export default function VacationForm () {
                       <optgroup>
                         {members.map(member => {
                           return (
-                            <option value={member.id}>{member.name}</option>
+                            <option value={member.id} id={member.id} key={member.id}>{member.name}</option>
                           )
                         })}
                       </optgroup>
@@ -80,7 +76,7 @@ export default function VacationForm () {
                     <select className={styles.form__vacationType} >
                       {vacationTypesArr.map((type, index) =>{
                         return(
-                          <option value={index}>{type}</option>
+                          <option value={index} id={index} key={index}>{type}</option>
                         )
                       })}
                     </select>

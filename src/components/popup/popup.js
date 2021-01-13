@@ -4,11 +4,10 @@ import { PopupContext } from "../../App";
 
 export default function Popup (props) {
 
-  const { togglePopup, hideError } = useContext(PopupContext);
+  const { hideError } = useContext(PopupContext);
 
     return (
         <div className={styles.popup} onClick={()=> {
-          // togglePopup();
           hideError();
         }}>
           {props.children}
