@@ -74,7 +74,7 @@ vacationInCurrentMonth (arrVacationCurrentMember)
                         let vacationAtCurrentDay = arrVacationInCurrentMonth.filter((item) => +day.dayOfMonth >= +item.start && +day.dayOfMonth <= +item.end)
                         if(vacationAtCurrentDay.length) {
                             return <td className={wrapperClass} data-id={vacationAtCurrentDay[0].id} onClick={(e)=>deleteVacation(e.target.closest("td"))}><span className="day vacations" style={backgroundColor}></span></td>
-                        } else {
+                        } else { 
                             return <td className={wrapperClass}></td>  
                         }
                     } else {
