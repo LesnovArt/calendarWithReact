@@ -3,22 +3,10 @@ import { useState, useEffect  } from 'react'
 import TeamHead from "../teamHead/teamHead";
 import TeamBody from "../teamBody/teamBody";
 import style from "./tableBody.module.scss";
-import axios from 'axios'
 
-function TableBody(props) {
-//     const [vacations, setVacation] = useState([])
-//     useEffect(() => {
-//         axios
-//           .get(`http://localhost:3004/vacations`)
-//           .then((res) => {
-//             setVacation(res.data);
-//           })
-//           .catch((err) => {
-//             console.log(err);
-//           });
-//       }, []);
-// console.log(props)      
-// console.log(vacations)
+
+function TableBody(props) {   
+
     let color;
     (function departmentColor (){
         switch (props.department) {
@@ -53,8 +41,8 @@ function TableBody(props) {
         <tbody className = "tableBody">
             <TeamHead teamName = {props.department} members = {props.members} color = {color} toggleDepartment = {toggleDepartment} arrDays={props.arrDays}/> 
             {
-                props.members.map((member) =>
-                   <TeamBody member = {member} color = {color} isHide = {isHide} arrDays={props.arrDays}/>
+                props.vacationsDepartment.members.map((member) =>
+                   <TeamBody member = {member} color = {color} isHide = {isHide} arrDays={props.arrDays} />
                )
             }
             

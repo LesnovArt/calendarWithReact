@@ -4,30 +4,16 @@ import classNames from "classnames"
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 function TeamBody(props) {
-    const [arrVacations, setVacation] = useState([])
-    let arrVacationInCurrentMonth = [];
-
+    let arrVacationInCurrentMonth =  []
+    let arrVacationCurrentMember = props.member.vacations;
     const color = {
         borderLeft: '3px solid ' + props.color + ' 1)',
       };
     const backgroundColor = {
         backgroundColor: props.color + ' 1)'
     }
-
-    useEffect(() => {
-        axios
-        .get(`http://localhost:3004/vacations`)
-        .then((res) => {
-            setVacation(res.data);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-        
-    }, []);
-
-
     function convertedDate(day){
+
         return new Date(day.split(".").reverse().join("-"))
     }
     function getObjVacation(id,start,end) {
@@ -40,16 +26,6 @@ function TeamBody(props) {
             }
         }
     }
-
-    if(arrVacations) {
-        (function findMember (vacations) {
-            let arrVacationsCurrentMember = vacations.filter(element => element.userId === props.member.id);
-            
-            vacationInCurrentMonth (arrVacationsCurrentMember) 
-            
-        })(arrVacations)  
-    }
-
     function vacationInCurrentMonth (arrVacationsCurrentMember) {
         let startMonth = new Date(convertedDate(props.arrDays[0].fullDate))
         let endMonth = new Date(convertedDate(props.arrDays[props.arrDays.length-1].fullDate))
@@ -67,19 +43,17 @@ function TeamBody(props) {
             }
         }  
     }
-        
+vacationInCurrentMonth (arrVacationCurrentMember)            
     function deleteVacation(element) {
-
     let isDelete = window.confirm("Delete this vacation?")
-    let attribute = element.getAttribute('data-id');
-        
+    let attribute = element.getAttribute('data-id'); 
     const url = `http://localhost:3004/vacations/${attribute}`;   
-
         if(isDelete){
             axios
             .delete(url)
             .then((res) => {
-                setVacation(res.data);
+                console.log(res)
+                // setVacation(res.data);
             })
             .catch((err) => {
                 console.log(err);
@@ -88,7 +62,6 @@ function TeamBody(props) {
         document.location.reload()
         }
     }
-
     if(!props.isHide){
         return (
             <tr className="member" >
