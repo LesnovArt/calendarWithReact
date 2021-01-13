@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import style from "./tableHead.module.scss";
 import { PopupContext } from "../../App";
 
-function TableHead({ currentDate, arrDays }) {
+function TableHead({ arrDays }) {
   const isPopupShow = useContext(PopupContext);
   return (<tr className={style.calendarRow}>
         <td className={style.calendarRow__addVacationCell}>
@@ -12,7 +12,7 @@ function TableHead({ currentDate, arrDays }) {
         </td>
         {arrDays.map((cell) => (
           cell.isDayOff ? 
-          (<td className={style.calendarRow__outputItem, style.weekend}>
+          (<td className={`${style.calendarRow__outputItem}, ${style.weekend}`}>
             <span className={style.calendarRow__outputDay}>{cell.dayName}</span>
             <span className={style.calendarRow__outputDate}>{cell.dayOfMonth}</span>
           </td> )

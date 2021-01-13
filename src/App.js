@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect, createContext } from 'react'
 import axios from 'axios'
 import MonthSwitcher from "./components/monthSwitcher/monthSwitcher";
-import TableHead from "./components/tableHead/tabelHead";
+import TableHead from "./components/tableHead/tableHead";
 import TableBody from "./components/tableBody/tableBody";
 import TableFooter from "./components/tableFooter/tableFooter";
 import MonthVacationCounter from "./components/monthVacationCounter/monthVacationCounter";
@@ -118,15 +118,15 @@ function addVacationToUser(arrVacation,departmentMember) {
         <div className="table-wrapper">
           <table>
             <thead>
-              <TableHead currentDate={currentDate} arrDays={arrDays} createCells={createCells}/>
+              <TableHead arrDays={arrDays} /> 
             </thead>
             {getDepartments().map((department) => (
                 <TableBody members={getDepartment(department, users)} department={department} vacationsDepartment = {getVacations(department, arrDepartmentVacations)}arrDays={arrDays} />
             ))}
-            <TableFooter />
+            <TableFooter arrDays={arrDays}/>
           </table>
         </div>
-        <MonthVacationCounter />
+        <MonthVacationCounter currentDate={currentDate} members={members}/>
           { isPopupShow && <Popup/> }
         </PopupContext.Provider>
         </ErrorBoundary>
