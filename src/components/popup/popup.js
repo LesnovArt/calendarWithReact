@@ -1,15 +1,17 @@
 import React, { useContext } from "react";
 import styles from "./popup.module.scss";
 import { PopupContext } from "../../App";
-import VacationForm from "../vacationForm/vacationForm";
 
-export default function Popup () {
+export default function Popup (props) {
 
-  const isPopupShow = useContext(PopupContext);
+  const { togglePopup, hideError } = useContext(PopupContext);
 
     return (
-        <div className={styles.popup} onClick={()=> isPopupShow()}>
-            <VacationForm/>
+        <div className={styles.popup} onClick={()=> {
+          // togglePopup();
+          hideError();
+        }}>
+          {props.children}
         </div>
     )
 }
