@@ -65,7 +65,6 @@ function App() {
     return arrMembers.filter((member) => member.realm === department);
   }
 
-console.log(members)
 //  const members = getDepartments();
 
   const arrDays = createCells(currentDate.startOf("month"));
@@ -79,7 +78,8 @@ console.log(members)
         <PopupContext.Provider value={{
           togglePopup: togglePopup,
           showError: showError,
-          hideError: hideError
+          hideError: hideError,
+          members: members
         }}>
       <MonthSwitcher currentDate={currentDate} setCurrentDate={setCurrentDate} />
       <div className="table-wrapper">

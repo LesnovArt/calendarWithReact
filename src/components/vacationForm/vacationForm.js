@@ -1,18 +1,47 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./vacationForm.module.scss";
 import { PopupContext } from "../../App";
+import * as moment from "moment";
+
 
 
 export default function VacationForm () {
 
-    const {togglePopup} = useContext(PopupContext);
-    
+    const {togglePopup, members} = useContext(PopupContext);
+    const [startDate,setStartDate] = useState()
+    const [endDate,setEndDate] = useState()
+    const vacationTypesArr = ['Paid Day Off (PD)','Unpaid Day Off (UD)'];
+
+    let vacationCounter;
+
+    function getStartDate (event) {
+        setStartDate(event.target.value);
+    }
+
+    function getEndDate (event) {
+        setEndDate(event.target.value);
+    }
+
+    if(startDate && endDate){
+      let start = Number(moment(startDate).format('D'));
+      let end = Number(moment(endDate).format('D'));
+      if (startDate && endDate){
+        vacationCounter = end - start;
+      }else if(vacationCounter >= 0){
+        [start,end] = [end,start];
+        vacationCounter *= -1;
+      }
+    }
+
+
+
+
     return (
         <div className={styles.form}>
             <div className={styles.form__header}>
                 <div className={styles.form__title}>Vacation Request</div>
                 <div className={styles.form__counter}>
-                    <span className={styles.form__counterDays}>8</span>
+                    <span className={styles.form__counterDays}>{vacationCounter}</span>
                     <span className={styles.form__counterText}>Days</span>
                 </div>
             </div>
@@ -20,9 +49,13 @@ export default function VacationForm () {
                 <div className={styles.form__users}>
                     <div className={`${styles.form__usersSubtitle} ${styles.subtitle}`}>Users</div>
                     <select className={styles.form__users} >
-                        <option value="1">user 1</option>
-                        <option value="2">user 2</option>
-                        <option value="3">user 3</option>
+                      <optgroup>
+                        {members.map(member => {
+                          return (
+                            <option value={member.id}>{member.name}</option>
+                          )
+                        })}
+                      </optgroup>
                     </select>
                 </div>
                 <div className={styles.form__date}>
@@ -30,26 +63,34 @@ export default function VacationForm () {
                     <div className={styles.form__dateInputsWrapper}>
                         <div className={styles.form__dateInputWrapper}>
                             <span className={styles.form__dateInputName}>From</span>
-                            <input className={`${styles.form__dateInputStart} ${styles.input}`} type='date'/>
+                            <input className={`${styles.form__dateInputStart} ${styles.input}`} type='date'
+                                  onChange={event => getStartDate(event)} value={startDate}
+                            />
                         </div>
                         <div className={styles.form__dateInputWrapper}>
                             <span className={styles.form__dateInputName}>To</span>
-                            <input className={`${styles.form__dateInputEnd} ${styles.input}`} type='date'/>
+                            <input className={`${styles.form__dateInputEnd} ${styles.input}`} type='date'
+                                   onChange={event => getEndDate(event)} value={endDate}
+                            />
                         </div>
                     </div>
                 </div>
                 <div className={styles.form__vacation}>
                     <div className={`${styles.form__vacationSubtitle} ${styles.subtitle}`}>Vac Type</div>
                     <select className={styles.form__vacationType} >
-                        <option value="1">vacation 1</option>
-                        <option value="2">vacation 2</option>
-                        <option value="3">vacation 3</option>
+                      {vacationTypesArr.map((type, index) =>{
+                        return(
+                          <option value={index}>{type}</option>
+                        )
+                      })}
                     </select>
                 </div>
             </div>
             <div className={styles.form__footer}>
-                <button className={`${styles.form__footerCancelBtn} ${styles.btn}`} onClick={()=>togglePopup()}>Cancel</button>
-                <button className={`${styles.form__footerSendBtn} ${styles.btn}`}>Send</button>
+                <button className={`${styles.form__footerCancelBtn} ${styles.btn}`}
+                        onClick={()=>togglePopup()}>Cancel</button>
+                <button className={`${styles.form__footerSendBtn} ${styles.btn}`}
+                        onClick={()=> console.log(members)}>Send</button>
             </div>
         </div>
     )
