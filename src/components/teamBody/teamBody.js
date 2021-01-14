@@ -5,8 +5,10 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 function TeamBody(props) {
-    const [arrVacations, setVacation] = useState([])
-    let arrVacationInCurrentMonth = [];
+console.log(props)
+    let arrVacationInCurrentMonth =  []
+    let arrVacationCurrentMember = props.member.vacations;
+
 
     const color = {
         borderLeft: '3px solid ' + props.color + ' 1)',
@@ -14,19 +16,6 @@ function TeamBody(props) {
     const backgroundColor = {
         backgroundColor: props.color + ' 1)'
     }
-
-    useEffect(() => {
-        axios
-        .get(`http://localhost:3004/vacations`)
-        .then((res) => {
-            setVacation(res.data);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-        
-    }, []);
-
 
     function convertedDate(day){
         return new Date(day.split(".").reverse().join("-"))
@@ -40,15 +29,6 @@ function TeamBody(props) {
                 return this.end - this.start
             }
         }
-    }
-
-    if(arrVacations) {
-        (function findMember (vacations) {
-            let arrVacationsCurrentMember = vacations.filter(element => element.userId === props.member.id);
-            
-            vacationInCurrentMonth (arrVacationsCurrentMember) 
-            
-        })(arrVacations)  
     }
 
     function vacationInCurrentMonth (arrVacationsCurrentMember) {
@@ -68,28 +48,36 @@ function TeamBody(props) {
             }
         }  
     }
-        
+
+    if(arrVacationCurrentMember.length){
+        vacationInCurrentMonth (arrVacationCurrentMember)   
+    }
+         
     function deleteVacation(element) {
-
     let isDelete = window.confirm("Delete this vacation?")
-    let attribute = element.getAttribute('data-id');
-        
+    let attribute = element.getAttribute('data-id'); 
     const url = `http://localhost:3004/vacations/${attribute}`;   
-
         if(isDelete){
             axios
             .delete(url)
-            .then((res) => {
-                setVacation(res.data);
+            .then (()=>{
+               props.setNewVacations() 
             })
             .catch((err) => {
                 console.log(err);
             });
-
-        document.location.reload()
         }
+        
     }
-
+    // useEffect(() => {
+    //     setCount()
+    //     console.log('d')
+    //     console.log(props.arrDays)
+    //   }, [count]);
+    function setCount() {
+        return props.arrDays.filter((day)=>day.isVacation && !day.isDayOff).length      
+    }
+    
     if(!props.isHide){
         return (
             <tr className="member" >
@@ -97,21 +85,25 @@ function TeamBody(props) {
                     <span>{props.member.name}</span>
                 </td>
                 {props.arrDays.map((day) =>{
+                    day.isVacation = false;
                     let wrapperClass = classNames('member_day','day', { 'restDay': day.dayName === 'Sa' ||  day.dayName === 'Su'})
                     if(arrVacationInCurrentMonth && arrVacationInCurrentMonth.length) {
                         let vacationAtCurrentDay = arrVacationInCurrentMonth.filter((item) => +day.dayOfMonth >= +item.start && +day.dayOfMonth <= +item.end)
                         if(vacationAtCurrentDay.length) {
+                            day.isVacation = true;
                             return <td className={wrapperClass} data-id={vacationAtCurrentDay[0].id} onClick={(e)=>deleteVacation(e.target.closest("td"))}><span className="day vacations" style={backgroundColor}></span></td>
-                        } else {
+                        } else { 
                             return <td className={wrapperClass}></td>  
                         }
                     } else {
                         return <td className={wrapperClass} ></td>
                     }
+                    
                     })   
+                    
                 }
                 <td className="member_sum day">
-                    <span>0</span>
+                   <span>{setCount()}</span>
                 </td>                
             </tr>
         )
