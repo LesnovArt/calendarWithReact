@@ -10,7 +10,7 @@ export function createCells(date, memberId = 0) {
     const isWeekend = currentDay.format('dd') === "Sa" || currentDay.format('dd') === "Su";
     const day = {
       fullDate:currentDay.format('DD.MM.YYYY'),
-      dayOfMonth: currentDay.format('D'),
+      dayOfMonth: Number(currentDay.format('D')),
       dayName: currentDay.format('dd'),
       isDayOff: isWeekend,
       memberId: memberId

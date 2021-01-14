@@ -46,7 +46,6 @@ export default function VacationForm () {
     }
 
     function sendPostRequest(){
-      console.log(userId)
       // if(startDate && endDate && vacationType && userId) {
         const postObject = {
           id: Number(moment().format('x')),
