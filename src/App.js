@@ -45,16 +45,21 @@ function App() {
         console.log(err);
       });
   }, []);
+  
   useEffect(() => {
-    axios
-      .get(`http://localhost:3004/vacations`)
-      .then((res) => {
-        setVacations(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    setNewVacations();
   }, []);
+  
+  function setNewVacations(){
+      axios
+        .get(`http://localhost:3004/vacations`)
+        .then((res) => {
+          setVacations(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  }
   
   if(users.length) {
     let members = users;
@@ -140,7 +145,7 @@ function addVacationToUser(arrVacation,departmentMember) {
               <TableHead arrDays={arrDays} /> 
             </thead>
             {getDepartments().map((department) => (
-                <TableBody members={getDepartment(department, users)} department={department} vacationsDepartment = {getVacations(department, arrDepartmentVacations)}arrDays={arrDays} />
+                <TableBody members={getDepartment(department, users)} department={department} vacationsDepartment = {getVacations(department, arrDepartmentVacations)}arrDays={arrDays} setNewVacations = {setNewVacations}/>
             ))}
             <TableFooter arrDays={arrDays}/>
           </table>

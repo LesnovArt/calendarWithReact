@@ -6,7 +6,7 @@ import style from "./tableBody.module.scss";
 
 
 function TableBody(props) {   
-
+console.log(props)
     let color;
     (function departmentColor (){
         switch (props.department) {
@@ -42,7 +42,7 @@ function TableBody(props) {
             <TeamHead teamName = {props.department} members = {props.members} color = {color} toggleDepartment = {toggleDepartment} arrDays={props.arrDays}/> 
             {
                 props.vacationsDepartment.members.map((member) =>
-                   <TeamBody member = {member} color = {color} isHide = {isHide} arrDays={props.arrDays} />
+                   <TeamBody member = {member} color = {color} isHide = {isHide} arrDays={props.arrDays} setNewVacations = {props.setNewVacations}/>
                )
             }
             

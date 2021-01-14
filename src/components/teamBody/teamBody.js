@@ -52,16 +52,14 @@ vacationInCurrentMonth (arrVacationCurrentMember)
         if(isDelete){
             axios
             .delete(url)
-            .then((res) => {
-                console.log(res)
-                // setVacation(res.data);
+            .then (()=>{
+               props.setNewVacations() 
             })
             .catch((err) => {
                 console.log(err);
             });
-
-        document.location.reload()
         }
+        
     }
     if(!props.isHide){
         return (
