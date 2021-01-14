@@ -6,7 +6,6 @@ import style from "./tableBody.module.scss";
 
 
 function TableBody(props) {   
-console.log(props)
     let color;
     (function departmentColor (){
         switch (props.department) {
