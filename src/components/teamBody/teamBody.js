@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 function TeamBody(props) {
-console.log(props)
+
     let arrVacationInCurrentMonth =  []
     let arrVacationCurrentMember = props.member.vacations;
 
@@ -40,13 +40,14 @@ console.log(props)
             if(startVacation>=startMonth && endVacation<=endMonth) {
                 arrVacationInCurrentMonth.push(getObjVacation(arrVacationsCurrentMember[i].id,new Date(startVacation.getTime()).getDate(),new Date(endVacation.getTime()).getDate()))
             } else if(startVacation>=startMonth && startVacation<=endMonth && endVacation>=endMonth){
-                arrVacationInCurrentMonth.push(getObjVacation(new Date(startVacation.getTime()).getDate(),new Date(endMonth.getTime()).getDate()))
+                arrVacationInCurrentMonth.push(getObjVacation(arrVacationsCurrentMember[i].id,new Date(startVacation.getTime()).getDate(),new Date(endMonth.getTime()).getDate()))
             } else if(startVacation<=startMonth && endVacation<=endMonth && endVacation>=startMonth){
-                arrVacationInCurrentMonth.push(getObjVacation(new Date(startMonth.getTime()).getDate(),new Date(endVacation.getTime()).getDate()))
+                arrVacationInCurrentMonth.push(getObjVacation(arrVacationsCurrentMember[i].id,new Date(startMonth.getTime()).getDate(),new Date(endVacation.getTime()).getDate()))
             } else if(startVacation<=startMonth && endVacation>=endMonth){
-                arrVacationInCurrentMonth.push(getObjVacation(new Date(startMonth.getTime()).getDate(),new Date(endMonth.getTime()).getDate()))
+                arrVacationInCurrentMonth.push(getObjVacation(arrVacationsCurrentMember[i].id,new Date(startMonth.getTime()).getDate(),new Date(endMonth.getTime()).getDate()))
             }
         }  
+        console.log(arrVacationInCurrentMonth)
     }
 
     if(arrVacationCurrentMember.length){
@@ -75,9 +76,9 @@ console.log(props)
     //     console.log(props.arrDays)
     //   }, [count]);
     function setCount() {
-        return props.arrDays.filter((day)=>day.isVacation && !day.isDayOff).length      
+        return props.arrDays.filter((day)=>day.isVacation && !day.isDayOff).length    
     }
-    
+    // props.getProcent(setCount(), props.member.realm) 
     if(!props.isHide){
         return (
             <tr className="member" >
@@ -98,10 +99,13 @@ console.log(props)
                     } else {
                         return <td className={wrapperClass} ></td>
                     }
-                    
                     })   
-                    
+
                 }
+                    {
+                        props.getProcent(setCount(), props.member.realm) 
+                    }
+
                 <td className="member_sum day">
                    <span>{setCount()}</span>
                 </td>                

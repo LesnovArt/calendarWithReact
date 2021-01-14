@@ -35,13 +35,33 @@ function TableBody(props) {
     function toggleDepartment (){
         setToggleDepartment (prevCount => !prevCount)
     }
+
+    function getProcent(count, realm) {
+        let arrCount = []
+        arrCount.push({
+            count: count,
+            realm: realm
+        })
+        // console.log(arrCount)
+    }
+
+
     return (
         
         <tbody className = "tableBody">
-            <TeamHead teamName = {props.department} members = {props.members} color = {color} toggleDepartment = {toggleDepartment} arrDays={props.arrDays}/> 
+            <TeamHead teamName = {props.department} 
+            members = {props.members} 
+            color = {color} 
+            toggleDepartment = {toggleDepartment} 
+            arrDays={props.arrDays}/> 
             {
                 props.vacationsDepartment.members.map((member) =>
-                   <TeamBody member = {member} color = {color} isHide = {isHide} arrDays={props.arrDays} setNewVacations = {props.setNewVacations}/>
+                   <TeamBody member = {member} 
+                   color = {color} 
+                   isHide = {isHide} 
+                   arrDays={props.arrDays} 
+                   setNewVacations = {props.setNewVacations}
+                   getProcent = {getProcent}/>
                )
             }
             
