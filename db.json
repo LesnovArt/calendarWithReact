@@ -191,53 +191,11 @@
       "type": "Pd"
     },
     {
-      "id": 1610646991882,
-      "startDate": "01.01.2021",
-      "endDate": "15.01.2021",
-      "userId": 1,
-      "type": "PD"
-    },
-    {
       "id": 1610647016226,
       "startDate": "01.01.2021",
       "endDate": "01.01.2021",
       "userId": 3,
       "type": "PD"
-    },
-    {
-      "id": 1610647044306,
-      "startDate": "01.01.2021",
-      "endDate": "30.11.2022",
-      "userId": 8,
-      "type": "PD"
-    },
-    {
-      "id": 1610647062905,
-      "startDate": "01.01.2021",
-      "endDate": "30.11.2023",
-      "userId": 8,
-      "type": "PD"
-    },
-    {
-      "id": 1610647092194,
-      "startDate": "01.01.2021",
-      "endDate": "30.01.2021",
-      "userId": 8,
-      "type": "Pd"
-    },
-    {
-      "id": 1610647107394,
-      "startDate": "01.01.2021",
-      "endDate": "28.02.2021",
-      "userId": 7,
-      "type": "Pd"
-    },
-    {
-      "id": 1610647129338,
-      "startDate": "01.01.2021",
-      "endDate": "28.02.2021",
-      "userId": 7,
-      "type": "UnPd"
     }
   ]
 }
