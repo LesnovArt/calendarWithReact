@@ -2,23 +2,24 @@ import React, { useContext, useState } from "react";
 import styles from "./vacationForm.module.scss";
 import { PopupContext } from "../../App";
 import * as moment from "moment";
+import axios from "axios";
 
 
 
 export default function VacationForm () {
 
-    const {togglePopup, members, setVacationPostObject} = useContext(PopupContext);
+    const {togglePopup, members, setNewVacations} = useContext(PopupContext);
     const [startDate,setStartDate] = useState()
     const [endDate,setEndDate] = useState()
     const [vacationType, setVacationType] = useState()
     const [userId, setUserId] = useState()
     const vacationTypesArr = [
       {
-        type:'PD',
+        type:'Pd',
         vacationName: 'Paid Day Off (PD)'
       },
       {
-        type:'UnPD',
+        type:'UnPd',
         vacationName: 'Unpaid Day Off (UD)'
       }];
 
@@ -40,17 +41,26 @@ export default function VacationForm () {
       setVacationType(event.target.getAttribute('type'))
     }
 
-    if(startDate && endDate && vacationType && userId){
-      const postObject = {
-        id: moment().format('x'),
-        startDate: moment(startDate).format('DD.MM.yyyy'),
-        endDate: moment(endDate).format('DD.MM.yyyy'),
-        userId: userId,
-        type: vacationType
+    function sendPostRequest(){
+      if(startDate && endDate && vacationType && userId){
+        const postObject = {
+          id: Number(moment().format('x')),
+          startDate: moment(startDate).format('DD.MM.yyyy'),
+          endDate: moment(endDate).format('DD.MM.yyyy'),
+          userId: Number(userId),
+          type: vacationType
+        }
+        console.log(postObject)
+        axios.post(`http://localhost:3004/vacations`, postObject)
+          .then(response => setNewVacations( response.data ))
+          .catch((err) => {
+          console.log(err);
+        })
       }
-
-      setVacationPostObject(postObject)
+      togglePopup()
     }
+
+
 
     if(startDate && endDate){
       let start = moment(startDate);
@@ -122,7 +132,7 @@ export default function VacationForm () {
                 <button className={`${styles.form__footerCancelBtn} ${styles.btn}`}
                         onClick={()=>togglePopup()}>Cancel</button>
                 <button className={`${styles.form__footerSendBtn} ${styles.btn}`}
-                        onClick={()=> console.log(members)}>Send</button>
+                        onClick={()=> sendPostRequest()}>Send</button>
             </div>
         </div>
     )

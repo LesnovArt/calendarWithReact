@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 function TeamBody(props) {
-console.log(props)
     let arrVacationInCurrentMonth =  []
     let arrVacationCurrentMember = props.member.vacations;
 
