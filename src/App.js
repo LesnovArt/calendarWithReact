@@ -86,7 +86,7 @@ function App() {
           showError: showError,
           hideError: hideError,
           members: members,
-          getVacationPostObject: getVacationPostObject
+          setVacationPostObject: getVacationPostObject
         }}>
       <MonthSwitcher currentDate={currentDate} setCurrentDate={setCurrentDate} />
       <div className="table-wrapper">

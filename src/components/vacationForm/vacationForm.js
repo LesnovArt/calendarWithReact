@@ -7,7 +7,7 @@ import * as moment from "moment";
 
 export default function VacationForm () {
 
-    const {togglePopup, members, getVacationPostObject} = useContext(PopupContext);
+    const {togglePopup, members, setVacationPostObject} = useContext(PopupContext);
     const [startDate,setStartDate] = useState()
     const [endDate,setEndDate] = useState()
     const [vacationType, setVacationType] = useState()
@@ -49,7 +49,7 @@ export default function VacationForm () {
         type: vacationType
       }
 
-      getVacationPostObject(postObject)
+      setVacationPostObject(postObject)
     }
 
     if(startDate && endDate){
