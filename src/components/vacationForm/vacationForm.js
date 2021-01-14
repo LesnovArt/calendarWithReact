@@ -11,8 +11,10 @@ export default function VacationForm () {
     const {togglePopup, members, setNewVacations} = useContext(PopupContext);
     const [startDate,setStartDate] = useState()
     const [endDate,setEndDate] = useState()
-    const [vacationType, setVacationType] = useState()
-    const [userId, setUserId] = useState()
+    // const [vacationType, setVacationType] = useState()
+    // const [userId, setUserId] = useState('')
+    let userId = 1;
+    let vacationType = 'Pd';
     const vacationTypesArr = [
       {
         type:'Pd',
@@ -26,23 +28,28 @@ export default function VacationForm () {
     let vacationCounter;
 
     function getStartDate (event) {
+      event.preventDefault()
         setStartDate(event.target.value);
     }
 
     function getEndDate (event) {
+      event.preventDefault()
         setEndDate(event.target.value);
     }
 
     function getUserId(event) {
-      setUserId(event.target.id)
+      userId = event.target.value
+      console.log(userId)
     }
 
     function getVacationType (event) {
-      setVacationType(event.target.getAttribute('type'))
+      vacationType = event.target.value
+      // setVacationType(event.target.getAttribute('type'))
     }
 
     function sendPostRequest(){
-      if(startDate && endDate && vacationType && userId){
+      console.log(userId)
+      // if(startDate && endDate && vacationType && userId) {
         const postObject = {
           id: Number(moment().format('x')),
           startDate: moment(startDate).format('DD.MM.yyyy'),
@@ -56,7 +63,7 @@ export default function VacationForm () {
           .catch((err) => {
           console.log(err);
         })
-      }
+      // }
       togglePopup()
     }
 
@@ -84,13 +91,12 @@ export default function VacationForm () {
             <div className={styles.form__body}>
                 <div className={styles.form__users}>
                     <div className={`${styles.form__usersSubtitle} ${styles.subtitle}`}>Users</div>
-                    <select className={styles.form__users}
+                    <select className={styles.form__users} onChange={getUserId}
                     >
                       <optgroup>
                         {members.map(member => {
                           return (
-                            <option value={member.name} id={member.id} key={member.id}
-                              onClick={event => getUserId(event)}
+                            <option value={member.id} id={member.id} key={member.id}
                             >{member.name}</option>
                           )
                         })}
@@ -116,12 +122,11 @@ export default function VacationForm () {
                 </div>
                 <div className={styles.form__vacation}>
                     <div className={`${styles.form__vacationSubtitle} ${styles.subtitle}`}>Vac Type</div>
-                    <select className={styles.form__vacationType}
+                    <select className={styles.form__vacationType} onChange={getVacationType}
                     >
                       {vacationTypesArr.map((vacType, index) =>{
                         return(
-                          <option value={vacType.vacationName} type={vacType.type} id={index} key={index}
-                                  onClick={event => getVacationType(event)}
+                          <option value={vacType.type} type={vacType.type} id={index} key={index}
                           >{vacType.vacationName}</option>
                         )
                       })}
