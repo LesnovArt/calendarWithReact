@@ -55,8 +55,9 @@ function TableBody(props) {
             toggleDepartment = {toggleDepartment} 
             arrDays={props.arrDays}/> 
             {
-                props.vacationsDepartment.members.map((member) =>
+                props.vacationsDepartment.members.map((member, index) =>
                    <TeamBody member = {member} 
+                   key={`tbody+${index}`}
                    color = {color} 
                    isHide = {isHide} 
                    arrDays={props.arrDays} 

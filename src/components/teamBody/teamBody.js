@@ -47,7 +47,6 @@ function TeamBody(props) {
                 arrVacationInCurrentMonth.push(getObjVacation(arrVacationsCurrentMember[i].id,new Date(startMonth.getTime()).getDate(),new Date(endMonth.getTime()).getDate()))
             }
         }  
-        console.log(arrVacationInCurrentMonth)
     }
 
     if(arrVacationCurrentMember.length){

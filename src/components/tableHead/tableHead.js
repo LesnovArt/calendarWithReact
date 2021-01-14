@@ -10,14 +10,14 @@ function TableHead({ arrDays }) {
             <span className={style.plus}>+</span>Add Vacation
           </button>
         </td>
-        {arrDays.map((cell) => (
+        {arrDays.map((cell, index) => (
           cell.isDayOff ? 
-          (<td className={`${style.calendarRow__outputItem}, ${style.weekend}`}>
+          (<td className={`${style.calendarRow__outputItem}, ${style.weekend}`} key={`w-thead + ${index}`}>
             <span className={style.calendarRow__outputDay}>{cell.dayName}</span>
             <span className={style.calendarRow__outputDate}>{cell.dayOfMonth}</span>
           </td> )
           :
-          (<td className={style.calendarRow__outputItem}>
+          (<td className={style.calendarRow__outputItem} key={`thead + ${index}`}>
             <span className={style.calendarRow__outputDay}>{cell.dayName}</span>
             <span className={style.calendarRow__outputDate}>{cell.dayOfMonth}</span>
           </td>)

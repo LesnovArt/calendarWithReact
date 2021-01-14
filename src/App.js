@@ -6,7 +6,6 @@ import TableHead from "./components/tableHead/tableHead";
 import TableBody from "./components/tableBody/tableBody";
 import TableFooter from "./components/tableFooter/tableFooter";
 import MonthVacationCounter from "./components/monthVacationCounter/monthVacationCounter";
-import PropTypes from "prop-types";
 import moment from "moment";
 import { createCells } from "./helpers/cellsCreator.js"
 import Popup from "./components/popup/popup";
