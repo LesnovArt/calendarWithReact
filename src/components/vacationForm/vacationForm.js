@@ -11,10 +11,10 @@ export default function VacationForm () {
     const {togglePopup, members, setNewVacations} = useContext(PopupContext);
     const [startDate,setStartDate] = useState()
     const [endDate,setEndDate] = useState()
-    // const [vacationType, setVacationType] = useState()
-    // const [userId, setUserId] = useState('')
-    let userId = 1;
-    let vacationType = 'Pd';
+    const [vacationType, setVacationType] = useState('Pd')
+    const [userId, setUserId] = useState(1)
+
+    
     const vacationTypesArr = [
       {
         type:'Pd',
@@ -37,14 +37,12 @@ export default function VacationForm () {
         setEndDate(event.target.value);
     }
 
-    function getUserId(event) {
-      userId = event.target.value
-      console.log(userId)
+    function getUserId(event) {    
+      setUserId(event.target.value)
     }
 
     function getVacationType (event) {
-      vacationType = event.target.value
-      // setVacationType(event.target.getAttribute('type'))
+      setVacationType(event.target.value)
     }
 
     function sendPostRequest(){
