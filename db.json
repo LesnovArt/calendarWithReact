@@ -168,6 +168,13 @@
       "endDate": "22.01.2021",
       "userId": 2,
       "type": "UnPd"
+    },
+    {
+      "id": 1610655202933,
+      "startDate": "01.01.2021",
+      "endDate": "16.01.2021",
+      "userId": 8,
+      "type": "Pd"
     }
   ]
 }
