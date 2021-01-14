@@ -22,6 +22,12 @@ function App() {
   const [members, setPost] = useState([])
   const [isPopupShow, setIsPopupShow] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [vacationPostObject, setVacationObject] = useState();
+    console.log(vacationPostObject)
+
+  function getVacationPostObject(object) {
+    setVacationObject(object)
+  }
 
   function togglePopup (){
     setIsPopupShow( prev => !prev);
@@ -79,7 +85,8 @@ function App() {
           togglePopup: togglePopup,
           showError: showError,
           hideError: hideError,
-          members: members
+          members: members,
+          getVacationPostObject: getVacationPostObject
         }}>
       <MonthSwitcher currentDate={currentDate} setCurrentDate={setCurrentDate} />
       <div className="table-wrapper">
