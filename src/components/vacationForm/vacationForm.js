@@ -2,15 +2,26 @@ import React, { useContext, useState } from "react";
 import styles from "./vacationForm.module.scss";
 import { PopupContext } from "../../App";
 import * as moment from "moment";
+import axios from "axios";
 
 
 
 export default function VacationForm () {
 
-    const {togglePopup, members} = useContext(PopupContext);
+    const {togglePopup, members, setNewVacations} = useContext(PopupContext);
     const [startDate,setStartDate] = useState()
     const [endDate,setEndDate] = useState()
-    const vacationTypesArr = ['Paid Day Off (PD)','Unpaid Day Off (UD)'];
+    const [vacationType, setVacationType] = useState()
+    const [userId, setUserId] = useState()
+    const vacationTypesArr = [
+      {
+        type:'Pd',
+        vacationName: 'Paid Day Off (PD)'
+      },
+      {
+        type:'UnPd',
+        vacationName: 'Unpaid Day Off (UD)'
+      }];
 
     let vacationCounter;
 
@@ -21,6 +32,35 @@ export default function VacationForm () {
     function getEndDate (event) {
         setEndDate(event.target.value);
     }
+
+    function getUserId(event) {
+      setUserId(event.target.id)
+    }
+
+    function getVacationType (event) {
+      setVacationType(event.target.getAttribute('type'))
+    }
+
+    function sendPostRequest(){
+      if(startDate && endDate && vacationType && userId){
+        const postObject = {
+          id: Number(moment().format('x')),
+          startDate: moment(startDate).format('DD.MM.yyyy'),
+          endDate: moment(endDate).format('DD.MM.yyyy'),
+          userId: Number(userId),
+          type: vacationType
+        }
+        console.log(postObject)
+        axios.post(`http://localhost:3004/vacations`, postObject)
+          .then(response => setNewVacations( response.data ))
+          .catch((err) => {
+          console.log(err);
+        })
+      }
+      togglePopup()
+    }
+
+
 
     if(startDate && endDate){
       let start = moment(startDate);
@@ -44,11 +84,14 @@ export default function VacationForm () {
             <div className={styles.form__body}>
                 <div className={styles.form__users}>
                     <div className={`${styles.form__usersSubtitle} ${styles.subtitle}`}>Users</div>
-                    <select className={styles.form__users} >
+                    <select className={styles.form__users}
+                    >
                       <optgroup>
                         {members.map(member => {
                           return (
-                            <option value={member.id} id={member.id} key={member.id}>{member.name}</option>
+                            <option value={member.name} id={member.id} key={member.id}
+                              onClick={event => getUserId(event)}
+                            >{member.name}</option>
                           )
                         })}
                       </optgroup>
@@ -73,10 +116,13 @@ export default function VacationForm () {
                 </div>
                 <div className={styles.form__vacation}>
                     <div className={`${styles.form__vacationSubtitle} ${styles.subtitle}`}>Vac Type</div>
-                    <select className={styles.form__vacationType} >
-                      {vacationTypesArr.map((type, index) =>{
+                    <select className={styles.form__vacationType}
+                    >
+                      {vacationTypesArr.map((vacType, index) =>{
                         return(
-                          <option value={index} id={index} key={index}>{type}</option>
+                          <option value={vacType.vacationName} type={vacType.type} id={index} key={index}
+                                  onClick={event => getVacationType(event)}
+                          >{vacType.vacationName}</option>
                         )
                       })}
                     </select>
@@ -86,7 +132,7 @@ export default function VacationForm () {
                 <button className={`${styles.form__footerCancelBtn} ${styles.btn}`}
                         onClick={()=>togglePopup()}>Cancel</button>
                 <button className={`${styles.form__footerSendBtn} ${styles.btn}`}
-                        onClick={()=> console.log(members)}>Send</button>
+                        onClick={()=> sendPostRequest()}>Send</button>
             </div>
         </div>
     )

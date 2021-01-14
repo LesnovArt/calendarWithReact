@@ -139,6 +139,8 @@ function addVacationToUser(arrVacation,departmentMember) {
           showError: showError,
           hideError: hideError,
           members: members,
+          setNewVacations: setNewVacations
+
         }}>
         <MonthSwitcher currentDate={currentDate} setCurrentDate={setCurrentDate} />
         <div className="table-wrapper">
