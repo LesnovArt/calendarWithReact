@@ -95,7 +95,8 @@ function checkDepartmentID(department,arrMembers) {
     if(department.realm === arrMembers[i].realm) {
       department.members.push({
         id: arrMembers[i].id,
-        name: arrMembers[i].name
+        name: arrMembers[i].name,
+        realm: arrMembers[i].realm
       })
     }
   }
@@ -139,6 +140,7 @@ function addVacationToUser(arrVacation,departmentMember) {
           hideError: hideError,
           members: members,
           setNewVacations: setNewVacations
+
         }}>
         <MonthSwitcher currentDate={currentDate} setCurrentDate={setCurrentDate} />
         <div className="table-wrapper">
