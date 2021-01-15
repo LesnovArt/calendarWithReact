@@ -8,13 +8,13 @@ import axios from "axios";
 
 export default function VacationForm () {
 
+
     const {togglePopup, members, setNewVacations} = useContext(PopupContext);
-    const [startDate,setStartDate] = useState('')
-    const [endDate,setEndDate] = useState('')
+    const [startDate,setStartDate] = useState()
+    const [endDate,setEndDate] = useState()
     const [vacationType, setVacationType] = useState('Pd')
     const [userId, setUserId] = useState(1)
-
-    
+    const [valid, setValid] = useState(true)
     const vacationTypesArr = [
       {
         type:'Pd',
@@ -46,8 +46,7 @@ export default function VacationForm () {
     }
 
     function sendPostRequest(){
-      console.log(userId)
-      // if(startDate && endDate && vacationType && userId) {
+      if(startDate && endDate && vacationType && userId) {
         const postObject = {
           id: Number(moment().format('x')),
           startDate: moment(startDate).format('DD.MM.yyyy'),
@@ -55,14 +54,23 @@ export default function VacationForm () {
           userId: Number(userId),
           type: vacationType
         }
-        console.log(postObject)
         axios.post(`http://localhost:3004/vacations`, postObject)
           .then(response => setNewVacations( response.data ))
           .catch((err) => {
           console.log(err);
         })
-      // }
-      togglePopup()
+        setValid(true)
+        togglePopup()
+      }else{
+          setValid(false)
+      }
+
+    }
+
+    function ValidationMessage(){
+      return (
+        <span className={styles.validMessage}>Эээээ!!!! Не все поля заполнены, эээ!!</span>
+      )
     }
 
 
@@ -86,6 +94,7 @@ export default function VacationForm () {
                     <span className={styles.form__counterText}>Days</span>
                 </div>
             </div>
+            {!valid && <ValidationMessage/>}
             <div className={styles.form__body}>
                 <div className={styles.form__users}>
                     <div className={`${styles.form__usersSubtitle} ${styles.subtitle}`}>Users</div>
