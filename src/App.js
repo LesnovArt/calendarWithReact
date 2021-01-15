@@ -126,6 +126,7 @@ function addVacationToUser(arrVacation,departmentMember) {
     }
   }
   const arrDays = createCells(currentDate.startOf("month"));
+  console.log(arrDays)
 
         return (
       <div className="wrapper">

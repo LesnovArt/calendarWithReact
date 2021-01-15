@@ -2,7 +2,7 @@ import React from "react";
 import style from "./tableFooter.module.scss";
 
 function TableFooter({ arrDays }) {
-  console.log(arrDays[0].fullDate)
+
   return (<tbody>
             <tr className={style.statsRow}>
               <td className={style.statsRow__name}>Day-Person Stats</td>

@@ -31,18 +31,25 @@ function TableBody(props) {
     })()
 
     const [isHide, setToggleDepartment] = useState(false)
+    const [procent, setProcent] = useState(0)
 
     function toggleDepartment (){
         setToggleDepartment (prevCount => !prevCount)
     }
 
+
+ let arrCount = []
+//  let result = 0;
     function getProcent(count, realm) {
-        let arrCount = []
         arrCount.push({
             count: count,
             realm: realm
         })
-        // console.log(arrCount)
+        let result = arrCount.reduce(function(sum, current) {
+            return current.count + sum;
+          }, 0);
+
+          setProcent(result)
     }
 
 
@@ -53,7 +60,9 @@ function TableBody(props) {
             members = {props.members} 
             color = {color} 
             toggleDepartment = {toggleDepartment} 
-            arrDays={props.arrDays}/> 
+            arrDays={props.arrDays}
+            procent = {procent}
+            /> 
             {
                 props.vacationsDepartment.members.map((member, index) =>
                    <TeamBody member = {member} 

@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 function TeamBody(props) {
-
+// console.log(props)
     let arrVacationInCurrentMonth =  []
     let arrVacationCurrentMember = props.member.vacations;
 
@@ -14,20 +14,23 @@ function TeamBody(props) {
         borderLeft: '3px solid ' + props.color + ' 1)',
       };
     const backgroundColor = {
-        backgroundColor: props.color + ' 1)'
+        // backgroundColor: props.color + ' 1)',
+        border: '1px solid ' + props.color + ' 1) '
     }
 
     function convertedDate(day){
         return new Date(day.split(".").reverse().join("-"))
     }
-    function getObjVacation(id,start,end) {
+    function getObjVacation(id,start,end,type) {
         return {
             id: id,
             start: start,
             end: end,
+            type:type,
             getDuraction () {
-                return this.end - this.start
+                return (this.end - this.start)+1
             }
+            
         }
     }
 
@@ -38,13 +41,30 @@ function TeamBody(props) {
             let startVacation = convertedDate(arrVacationsCurrentMember[i].startDate)
             let endVacation = convertedDate(arrVacationsCurrentMember[i].endDate)
             if(startVacation>=startMonth && endVacation<=endMonth) {
-                arrVacationInCurrentMonth.push(getObjVacation(arrVacationsCurrentMember[i].id,new Date(startVacation.getTime()).getDate(),new Date(endVacation.getTime()).getDate()))
+                console.log(arrVacationsCurrentMember[i].type)
+                arrVacationInCurrentMonth.push(getObjVacation(
+                    arrVacationsCurrentMember[i].id,
+                    new Date(startVacation.getTime()).getDate(),
+                    new Date(endVacation.getTime()).getDate(),
+                    arrVacationsCurrentMember[i].type))
             } else if(startVacation>=startMonth && startVacation<=endMonth && endVacation>=endMonth){
-                arrVacationInCurrentMonth.push(getObjVacation(arrVacationsCurrentMember[i].id,new Date(startVacation.getTime()).getDate(),new Date(endMonth.getTime()).getDate()))
+                arrVacationInCurrentMonth.push(getObjVacation(
+                    arrVacationsCurrentMember[i].id,
+                    new Date(startVacation.getTime()).getDate(),
+                    new Date(endMonth.getTime()).getDate(),
+                    arrVacationsCurrentMember[i].type))
             } else if(startVacation<=startMonth && endVacation<=endMonth && endVacation>=startMonth){
-                arrVacationInCurrentMonth.push(getObjVacation(arrVacationsCurrentMember[i].id,new Date(startMonth.getTime()).getDate(),new Date(endVacation.getTime()).getDate()))
+                arrVacationInCurrentMonth.push(getObjVacation(
+                    arrVacationsCurrentMember[i].id,
+                    new Date(startMonth.getTime()).getDate(),
+                    new Date(endVacation.getTime()).getDate(),
+                    arrVacationsCurrentMember[i].type))
             } else if(startVacation<=startMonth && endVacation>=endMonth){
-                arrVacationInCurrentMonth.push(getObjVacation(arrVacationsCurrentMember[i].id,new Date(startMonth.getTime()).getDate(),new Date(endMonth.getTime()).getDate()))
+                arrVacationInCurrentMonth.push(getObjVacation(
+                    arrVacationsCurrentMember[i].id,
+                    new Date(startMonth.getTime()).getDate(),
+                    new Date(endMonth.getTime()).getDate(),
+                    arrVacationsCurrentMember[i].type))
             }
         }  
     }
@@ -91,7 +111,15 @@ function TeamBody(props) {
                         let vacationAtCurrentDay = arrVacationInCurrentMonth.filter((item) => +day.dayOfMonth >= +item.start && +day.dayOfMonth <= +item.end)
                         if(vacationAtCurrentDay.length) {
                             day.isVacation = true;
-                            return <td className={wrapperClass} data-id={vacationAtCurrentDay[0].id} onClick={(e)=>deleteVacation(e.target.closest("td"))}><span className="day vacations" style={backgroundColor}></span></td>
+                            console.log(vacationAtCurrentDay[0])
+                            let typeVacationClass = classNames({ 'UnPd vacations': vacationAtCurrentDay[0].type === 'UnPd'}, {'Pd vacations': vacationAtCurrentDay[0].type === 'Pd'} )
+                            if(+day.dayOfMonth === vacationAtCurrentDay[0].start) {
+                                return <td className={wrapperClass + ' vacationHover'} data-id={vacationAtCurrentDay[0].id} onClick={(e)=>deleteVacation(e.target.closest("td"))}>
+                                    <span className={typeVacationClass} style={{ width: 'calc(34*' + vacationAtCurrentDay[0].getDuraction() + 'px - 3px)' , backgroundColor: props.color + ' 1)', border: '2px solid ' + props.color + ' 1)', color: props.color + ' 1)'}}>{vacationAtCurrentDay[0].type}</span></td>
+                            } else {
+                                return <td className={wrapperClass + ' vacationHover'} data-id={vacationAtCurrentDay[0].id} onClick={(e)=>deleteVacation(e.target.closest("td"))}><span></span></td>
+                            }
+
                         } else { 
                             return <td className={wrapperClass}></td>  
                         }
