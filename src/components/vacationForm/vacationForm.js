@@ -46,7 +46,7 @@ export default function VacationForm () {
     }
 
     function sendPostRequest(){
-      // if(startDate && endDate && vacationType && userId) {
+      if(startDate && endDate && vacationType && userId) {
         const postObject = {
           id: Number(moment().format('x')),
           startDate: moment(startDate).format('DD.MM.yyyy'),
@@ -54,13 +54,12 @@ export default function VacationForm () {
           userId: Number(userId),
           type: vacationType
         }
-        console.log(postObject)
         axios.post(`http://localhost:3004/vacations`, postObject)
           .then(response => setNewVacations( response.data ))
           .catch((err) => {
           console.log(err);
         })
-      // }
+      }
       togglePopup()
     }
 

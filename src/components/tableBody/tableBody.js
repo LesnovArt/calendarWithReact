@@ -42,7 +42,6 @@ function TableBody(props) {
             count: count,
             realm: realm
         })
-        // console.log(arrCount)
     }
 
 

@@ -25,6 +25,7 @@ function App() {
   const [hasError, setHasError] = useState(false);
 
 
+
   function togglePopup (){
     setIsPopupShow( prev => !prev);
   }
@@ -128,25 +129,6 @@ function addVacationToUser(arrVacation,departmentMember) {
     }
   }
   const arrDays = createCells(currentDate.startOf("month"));
-  // console.log(arrDays)
-  
-  // console.log(users)
-      const table = [];
-      const month = []
-  function getTable(arrDays, users) {
-    arrDays.map((cell) => {
-      const day = []
-      day.push(cell)
-      // table.push(users)
-       
-      // table.push((users.map((user) => {
-      //   // console.log(table)
-      // })))
-      console.log(day)
-    })
-console.log(table)
-  }
-  getTable(arrDays, users)
 
         return (
       <div className="wrapper">
@@ -171,7 +153,7 @@ console.log(table)
             {getDepartments().map((department) => (
                 <TableBody members={getDepartment(department, users)} department={department} vacationsDepartment = {getVacations(department, arrDepartmentVacations)} arrDays={arrDays} setNewVacations = {setNewVacations}/>
             ))}
-            <TableFooter arrDays={arrDays} users={users}/>
+            <TableFooter arrDays={arrDays} users={users} vacations={vacations} currentDate={currentDate}/>
           </table>
         </div>
         <MonthVacationCounter currentDate={currentDate} members={members}/>

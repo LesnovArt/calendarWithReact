@@ -13,7 +13,7 @@ export function createCells(date, memberId = 0) {
       dayOfMonth: Number(currentDay.format('D')),
       dayName: currentDay.format('dd'),
       isDayOff: isWeekend,
-      memberId: memberId
+      isVacDay: false,
     }
     currentDay.add(1,'d');
     arrDays.push(day);
