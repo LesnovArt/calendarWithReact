@@ -1,6 +1,5 @@
-import React from "react";
 import moment from "moment";
-  
+
 export function createCells(date, memberId = 0) {
   const arrDays = [];
   const daysInCurrentMonth = date.clone().endOf("month").format("DD");
