@@ -1,9 +1,7 @@
 import React from "react";
-import { useState, useEffect  } from 'react'
+import { useState } from 'react'
 import TeamHead from "../teamHead/teamHead";
 import TeamBody from "../teamBody/teamBody";
-import style from "./tableBody.module.scss";
-
 
 function TableBody(props) {   
     let color;
@@ -64,8 +62,9 @@ function TableBody(props) {
             procent = {procent}
             /> 
             {
-                props.vacationsDepartment.members.map((member) =>
+                props.vacationsDepartment.members.map((member, index) =>
                    <TeamBody member = {member} 
+                   key={`tbody+${index}`}
                    color = {color} 
                    isHide = {isHide} 
                    arrDays={props.arrDays} 

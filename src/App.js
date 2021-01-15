@@ -6,7 +6,6 @@ import TableHead from "./components/tableHead/tableHead";
 import TableBody from "./components/tableBody/tableBody";
 import TableFooter from "./components/tableFooter/tableFooter";
 import MonthVacationCounter from "./components/monthVacationCounter/monthVacationCounter";
-import PropTypes from "prop-types";
 import moment from "moment";
 import { createCells } from "./helpers/cellsCreator.js"
 import Popup from "./components/popup/popup";
@@ -23,6 +22,8 @@ function App() {
   const [vacations, setVacations] = useState([])
   const [isPopupShow, setIsPopupShow] = useState(false);
   const [hasError, setHasError] = useState(false);
+
+
 
   function togglePopup (){
     setIsPopupShow( prev => !prev);
@@ -154,13 +155,15 @@ function dayForFooter(isTrue, item) {
         <MonthSwitcher currentDate={currentDate} setCurrentDate={setCurrentDate} />
         <div className="table-wrapper">
           <table>
-            <thead>
+            <thead> 
               <TableHead arrDays={arrDays} /> 
             </thead>
+
             {getDepartments().map((department) => (
                 <TableBody members={getDepartment(department, users)} department={department} vacationsDepartment = {getVacations(department, arrDepartmentVacations)}arrDays={arrDays} setNewVacations = {setNewVacations} dayForFooter = {dayForFooter}/>
             ))}
             <TableFooter arrDays={arrDays} footer = {footer}/>
+
           </table>
         </div>
         <MonthVacationCounter currentDate={currentDate} members={members}/>

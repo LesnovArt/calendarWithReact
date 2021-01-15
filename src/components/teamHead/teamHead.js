@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from 'react'
-import style from "./teamHead.module.scss";
 import classNames from "classnames"
 
 function TeamHead(props) {

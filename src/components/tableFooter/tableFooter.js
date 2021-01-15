@@ -13,6 +13,7 @@ function TableFooter({ footer }) {
     <td className={style.sumCell}></td>
   </tr>
 );
+
 }
 
 export default TableFooter;
