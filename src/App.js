@@ -129,6 +129,15 @@ function addVacationToUser(arrVacation,departmentMember) {
   }
   const arrDays = createCells(currentDate.startOf("month"));
 
+let footer = [];
+for(let i = 0; i<arrDays.length; i++){
+  footer.push(0)
+}
+
+function dayForFooter(isTrue, item) {
+  footer[item] = footer[item] + Number(isTrue)
+}
+
         return (
       <div className="wrapper">
       <ErrorBoundary
@@ -149,10 +158,12 @@ function addVacationToUser(arrVacation,departmentMember) {
             <thead> 
               <TableHead arrDays={arrDays} /> 
             </thead>
-            {getDepartments().map((department, index) => (
-                <TableBody key={`tbody${department}`} members={getDepartment(department, users)} department={department} vacationsDepartment = {getVacations(department, arrDepartmentVacations)} arrDays={arrDays} setNewVacations = {setNewVacations}/>
+
+            {getDepartments().map((department) => (
+                <TableBody members={getDepartment(department, users)} department={department} vacationsDepartment = {getVacations(department, arrDepartmentVacations)}arrDays={arrDays} setNewVacations = {setNewVacations} dayForFooter = {dayForFooter}/>
             ))}
-            <TableFooter arrDays={arrDays} users={users} vacations={vacations} currentDate={currentDate}/>
+            <TableFooter arrDays={arrDays} footer = {footer}/>
+
           </table>
         </div>
         <MonthVacationCounter currentDate={currentDate} members={members}/>

@@ -86,15 +86,19 @@ function TeamBody(props) {
         }
         
     }
-    // useEffect(() => {
-    //     setCount()
-    //     console.log('d')
-    //     console.log(props.arrDays)
-    //   }, [count]);
+
     function setCount() {
         return props.arrDays.filter((day)=>day.isVacation && !day.isDayOff).length    
     }
-    // props.getProcent(setCount(), props.member.realm) 
+
+for(let i = 0; i<props.arrDays.length; i++){
+    if(props.arrDays[i].isVacation ==! undefined ){
+       props.dayForFooter(props.arrDays[i].isVacation, i) 
+    }
+    
+}
+    
+
     if(!props.isHide){
         return (
             <tr className="member" >
