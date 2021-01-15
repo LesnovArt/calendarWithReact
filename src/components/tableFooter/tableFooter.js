@@ -1,14 +1,14 @@
 import React from "react";
 import style from "./tableFooter.module.scss";
 
-function TableFooter({ arrDays }) {
+function TableFooter({ footer }) {
   return (<tr className={style.statsRow}>
     <td className={style.statsRow__name}>Day-Person Stats</td>
-    {arrDays.map((cell) => (
+    {footer.map((cell) => (
       cell.isDayOff ? 
       (<td className={style.statsRow__outputItem}></td>)
       :
-      (<td className={style.statsRow__outputItem}>0</td>)
+      (<td className={style.statsRow__outputItem}>{cell}</td>)
     ))}
     <td className={style.sumCell}></td>
   </tr>

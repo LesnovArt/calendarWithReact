@@ -70,7 +70,8 @@ function TableBody(props) {
                    isHide = {isHide} 
                    arrDays={props.arrDays} 
                    setNewVacations = {props.setNewVacations}
-                   getProcent = {getProcent}/>
+                   getProcent = {getProcent}
+                   dayForFooter = {props.dayForFooter}/>
                )
             }
             

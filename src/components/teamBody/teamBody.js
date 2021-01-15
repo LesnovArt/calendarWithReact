@@ -89,15 +89,19 @@ function TeamBody(props) {
         }
         
     }
-    // useEffect(() => {
-    //     setCount()
-    //     console.log('d')
-    //     console.log(props.arrDays)
-    //   }, [count]);
+
     function setCount() {
         return props.arrDays.filter((day)=>day.isVacation && !day.isDayOff).length    
     }
-    // props.getProcent(setCount(), props.member.realm) 
+
+for(let i = 0; i<props.arrDays.length; i++){
+    if(props.arrDays[i].isVacation ==! undefined ){
+       props.dayForFooter(props.arrDays[i].isVacation, i) 
+    }
+    
+}
+    
+
     if(!props.isHide){
         return (
             <tr className="member" >
@@ -111,7 +115,6 @@ function TeamBody(props) {
                         let vacationAtCurrentDay = arrVacationInCurrentMonth.filter((item) => +day.dayOfMonth >= +item.start && +day.dayOfMonth <= +item.end)
                         if(vacationAtCurrentDay.length) {
                             day.isVacation = true;
-                            console.log(vacationAtCurrentDay[0])
                             let typeVacationClass = classNames({ 'UnPd vacations': vacationAtCurrentDay[0].type === 'UnPd'}, {'Pd vacations': vacationAtCurrentDay[0].type === 'Pd'} )
                             if(+day.dayOfMonth === vacationAtCurrentDay[0].start) {
                                 return <td className={wrapperClass + ' vacationHover'} data-id={vacationAtCurrentDay[0].id} onClick={(e)=>deleteVacation(e.target.closest("td"))}>
