@@ -12,12 +12,12 @@ function TableHead({ arrDays }) {
         </td>
         {arrDays.map((cell, index) => (
           cell.isDayOff ? 
-          (<td className={`${style.calendarRow__outputItem}, ${style.weekend}`} key={`${index}thead`}>
+          (<td className={`${style.calendarRow__outputItem}, ${style.weekend}`} key={`w-thead${arrDays[index].fullDate}`}>
             <span className={style.calendarRow__outputDay}>{cell.dayName}</span>
             <span className={style.calendarRow__outputDate}>{cell.dayOfMonth}</span>
           </td> )
           :
-          (<td className={style.calendarRow__outputItem} key={`${index}thead`}>
+          (<td className={style.calendarRow__outputItem} key={`thead${arrDays[index].fullDate}`}>
             <span className={style.calendarRow__outputDay}>{cell.dayName}</span>
             <span className={style.calendarRow__outputDate}>{cell.dayOfMonth}</span>
           </td>)

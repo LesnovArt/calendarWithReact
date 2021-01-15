@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from 'react'
-import style from "./teamHead.module.scss";
 import classNames from "classnames"
 
 function TeamHead(props) {
@@ -14,6 +13,10 @@ function TeamHead(props) {
        props.toggleDepartment(props.teamName)
        setClass(prevCount => !prevCount)
     }
+
+    let arrWeekends = props.arrDays.filter((day)=>day.isDayOff).length
+    let procent = Math.round((props.procent / ((props.arrDays.length-arrWeekends) * props.members.length)) * 100)
+
     let wrapperClass = classNames('department_hideArrow', { 'rotateArrow': rotateArrow === true })
     return (
         <tr className="department" style={color}>
@@ -49,7 +52,7 @@ function TeamHead(props) {
                     </svg> */}
                 </span>
                 <span className="department_countMembers">{props.members.length}</span>
-                <span className="department_procent">8%</span>
+                <span className="department_procent">{procent}%</span>
                 <span className={wrapperClass} onClick = {() => clickArrow()}><i className="icon icon-chevron-down-solid"></i></span>
 
                 {/* <span><i className="icon icon-001-group"></i></span> */}

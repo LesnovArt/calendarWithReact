@@ -57,9 +57,9 @@ function TableFooter({ arrDays, users, vacations, currentDate }) {
             <td className={style.statsRow__name}>Day-Person Stats</td>
             {arrDays.map((cell, index) => (
               cell.isDayOff ? 
-              (<td className={style.statsRow__outputItem} key={`${index}tfoot`}></td>)
+              (<td className={style.statsRow__outputItem} key={`tfoot${arrDays[index].fullDate}`}></td>)
               :
-              (<td className={style.statsRow__outputItem} key={`${index}tfoot`}>{getSumsVocationForDay()[index]}</td>)
+              (<td className={style.statsRow__outputItem} key={`foot${arrDays[index].fullDate}`}>{getSumsVocationForDay()[index]}</td>)
             ))}
             <td className={style.sumCell}></td>
           </tr>

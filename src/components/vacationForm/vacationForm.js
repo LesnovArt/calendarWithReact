@@ -8,13 +8,13 @@ import axios from "axios";
 
 export default function VacationForm () {
 
+
     const {togglePopup, members, setNewVacations} = useContext(PopupContext);
     const [startDate,setStartDate] = useState()
     const [endDate,setEndDate] = useState()
     const [vacationType, setVacationType] = useState('Pd')
     const [userId, setUserId] = useState(1)
-
-    
+    const [valid, setValid] = useState(true)
     const vacationTypesArr = [
       {
         type:'Pd',
@@ -59,8 +59,18 @@ export default function VacationForm () {
           .catch((err) => {
           console.log(err);
         })
+        setValid(true)
+        togglePopup()
+      }else{
+          setValid(false)
       }
-      togglePopup()
+
+    }
+
+    function ValidationMessage(){
+      return (
+        <span className={styles.validMessage}>Эээээ!!!! Не все поля заполнены, эээ!!</span>
+      )
     }
 
 
@@ -84,6 +94,7 @@ export default function VacationForm () {
                     <span className={styles.form__counterText}>Days</span>
                 </div>
             </div>
+            {!valid && <ValidationMessage/>}
             <div className={styles.form__body}>
                 <div className={styles.form__users}>
                     <div className={`${styles.form__usersSubtitle} ${styles.subtitle}`}>Users</div>

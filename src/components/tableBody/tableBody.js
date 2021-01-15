@@ -1,9 +1,7 @@
 import React from "react";
-import { useState, useEffect  } from 'react'
+import { useState } from 'react'
 import TeamHead from "../teamHead/teamHead";
 import TeamBody from "../teamBody/teamBody";
-import style from "./tableBody.module.scss";
-
 
 function TableBody(props) {   
     let color;
@@ -31,17 +29,25 @@ function TableBody(props) {
     })()
 
     const [isHide, setToggleDepartment] = useState(false)
+    const [procent, setProcent] = useState(0)
 
     function toggleDepartment (){
         setToggleDepartment (prevCount => !prevCount)
     }
 
+
+ let arrCount = []
+//  let result = 0;
     function getProcent(count, realm) {
-        let arrCount = []
         arrCount.push({
             count: count,
             realm: realm
         })
+        let result = arrCount.reduce(function(sum, current) {
+            return current.count + sum;
+          }, 0);
+
+          setProcent(result)
     }
 
 
@@ -52,10 +58,13 @@ function TableBody(props) {
             members = {props.members} 
             color = {color} 
             toggleDepartment = {toggleDepartment} 
-            arrDays={props.arrDays}/> 
+            arrDays={props.arrDays}
+            procent = {procent}
+            /> 
             {
-                props.vacationsDepartment.members.map((member) =>
+                props.vacationsDepartment.members.map((member, index) =>
                    <TeamBody member = {member} 
+                   key={`tbody+${index}`}
                    color = {color} 
                    isHide = {isHide} 
                    arrDays={props.arrDays} 

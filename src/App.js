@@ -6,7 +6,6 @@ import TableHead from "./components/tableHead/tableHead";
 import TableBody from "./components/tableBody/tableBody";
 import TableFooter from "./components/tableFooter/tableFooter";
 import MonthVacationCounter from "./components/monthVacationCounter/monthVacationCounter";
-import PropTypes from "prop-types";
 import moment from "moment";
 import { createCells } from "./helpers/cellsCreator.js"
 import Popup from "./components/popup/popup";
@@ -147,11 +146,11 @@ function addVacationToUser(arrVacation,departmentMember) {
         <MonthSwitcher currentDate={currentDate} setCurrentDate={setCurrentDate} />
         <div className="table-wrapper">
           <table>
-            <thead>
+            <thead> 
               <TableHead arrDays={arrDays} /> 
             </thead>
-            {getDepartments().map((department) => (
-                <TableBody members={getDepartment(department, users)} department={department} vacationsDepartment = {getVacations(department, arrDepartmentVacations)} arrDays={arrDays} setNewVacations = {setNewVacations}/>
+            {getDepartments().map((department, index) => (
+                <TableBody key={`tbody${department}`} members={getDepartment(department, users)} department={department} vacationsDepartment = {getVacations(department, arrDepartmentVacations)} arrDays={arrDays} setNewVacations = {setNewVacations}/>
             ))}
             <TableFooter arrDays={arrDays} users={users} vacations={vacations} currentDate={currentDate}/>
           </table>
