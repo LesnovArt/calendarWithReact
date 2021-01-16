@@ -98,17 +98,16 @@ button:hover {
 
 }
 .restDay {
-  z-index: -1;
   background: #F0F0F0;
 }
 .vacations {
-
+  z-index: 1;
   display: block;
   position: absolute;
   width: 120px;
 
   height: 28px;
-  // top: 50%;
+
 
   transform: translateY(calc(-50%));
   left: 5px;
@@ -120,15 +119,18 @@ button:hover {
   border-radius: 3px;
   // color: #fff;
   // margin-bottom: 2px;
+
 }
 .UnPd {
   background-color: transparent !important;
   text-align: center;
 }
 .Pd {
+
   color: white !important;
   text-align: center;
 }
+
 .vacationHover:hover {
   cursor: pointer;
-}
+}  

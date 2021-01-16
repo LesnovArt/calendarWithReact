@@ -86,13 +86,6 @@
       "type": "Paid"
     },
     {
-      "id": 7,
-      "startDate": "10.12.2020",
-      "endDate": "18.12.2020",
-      "userId": 2,
-      "type": "Pd"
-    },
-    {
       "id": 8,
       "startDate": "25.01.2020",
       "endDate": "28.01.2020",
@@ -156,30 +149,30 @@
       "type": "UnPd"
     },
     {
-      "id": 1609671670482,
-      "startDate": "05.01.2021",
-      "endDate": "19.01.2021",
-      "userId": 3,
+      "id": 1610745492247,
+      "startDate": "20.01.2021",
+      "endDate": "28.01.2021",
+      "userId": 7,
       "type": "Pd"
     },
     {
-      "id": 1610721106163,
-      "startDate": "21.01.2021",
-      "endDate": "27.01.2021",
-      "userId": 4,
-      "type": "UnPd"
+      "id": 1610802775706,
+      "startDate": "17.01.2021",
+      "endDate": "21.01.2021",
+      "userId": 1,
+      "type": "Pd"
     },
     {
-      "id": 1610743781476,
-      "startDate": "13.01.2021",
+      "id": 1610802869370,
+      "startDate": "10.01.2021",
       "endDate": "22.01.2021",
       "userId": 2,
       "type": "Pd"
     },
     {
-      "id": 1610743794580,
-      "startDate": "21.01.2021",
-      "endDate": "28.01.2021",
+      "id": 1610802880490,
+      "startDate": "11.01.2021",
+      "endDate": "21.01.2021",
       "userId": 3,
       "type": "Pd"
     }
