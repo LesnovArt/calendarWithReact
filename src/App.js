@@ -12,7 +12,6 @@ import Popup from "./components/popup/popup";
 import ErrorBoundary from "./components/errorBoundary/errorBoundary";
 import VacationForm from "./components/vacationForm/vacationForm";
 import ErrorMessage from "./components/errorMessage/errorMessage";
-// import Data from "./components/Data/Data";
 
 export const PopupContext = createContext();
 
@@ -65,72 +64,83 @@ function App() {
     let arrVacations = vacations;    
     function getDepartments() {
       let arrOfDepartments = [];
-      for (let i = 0; i < members.length; i++) {
-        arrOfDepartments.push(members[i].realm);
-      }
+      members.forEach(member => {
+        arrOfDepartments.push(member.realm);
+      });
+
       let set = new Set();
-      for (let i = 0; i < arrOfDepartments.length; i++) {
-        set.add(arrOfDepartments[i]);
-      }
+
+      arrOfDepartments.forEach(department => {
+        set.add(department);
+      });
+
       let departments = Array.from (set);
   
       return departments
     }
+
     let arrDepartmentVacations = [];
-    for(let i = 0; i<getDepartments().length; i++){
+    getDepartments().forEach((item, index) => {
       let department = getDepartments()
       let objDepartmentVacation = {
-      realm: department[i]
+      realm: department[index]
       }
       arrDepartmentVacations.push(objDepartmentVacation)
-    }
-    for(let i = 0; i<arrDepartmentVacations.length; i++){
-      checkDepartmentID(arrDepartmentVacations[i],members)
-      checkDepartmentVacations(arrDepartmentVacations[i],arrVacations)
-    }
+    });
+
+    arrDepartmentVacations.forEach(department => {
+      checkDepartmentID(department,members)
+      checkDepartmentVacations(department,arrVacations)
+    });
+
 function checkDepartmentID(department,arrMembers) {
   department.members = []
-  for(let i = 0; i<arrMembers.length; i++){
-    if(department.realm === arrMembers[i].realm) {
+
+  arrMembers.forEach(member => {
+    if(department.realm === member.realm) {
       department.members.push({
-        id: arrMembers[i].id,
-        name: arrMembers[i].name,
-        realm: arrMembers[i].realm
+        id: member.id,
+        name: member.name,
+        realm: member.realm
       })
     }
-  }
+  });
 }
 function checkDepartmentVacations (department,arrVacation) {
-  for(let i = 0; i<department.members.length; i++){
-    department.members[i].vacations = [];
+
+  department.members.forEach(member => {
+    member.vacations = [];
     if(arrVacation.length) {
-      addVacationToUser(arrVacation,department.members[i])  
+      addVacationToUser(arrVacation,member)  
     }
-  }
+  });
+
 }
 function addVacationToUser(arrVacation,departmentMember) {
-  for(let j = 0; j<arrVacation.length; j++){
-    if(departmentMember.id === arrVacation[j].userId) {
-      departmentMember.vacations.push(arrVacation[j])
+  arrVacation.forEach(vacation => {
+    if(departmentMember.id === vacation.userId) {
+      departmentMember.vacations.push(vacation)
     }
-  } 
+  });
+
 }
   function getDepartment(department, arrMembers) {
+    console.log(arrMembers.filter((member) => member.realm === department))
     return arrMembers.filter((member) => member.realm === department);
+
   }
   function getVacations(department, vacationsDepartments) {
-    for(let i = 0; i < vacationsDepartments.length; i++) {
-      if(vacationsDepartments[i].realm === department) {
-        return vacationsDepartments[i];
-      }
-    }
+    const result = vacationsDepartments.find(item => item.realm === department);
+    return result
   }
   const arrDays = createCells(currentDate.startOf("month"));
 
 let footer = [];
-for(let i = 0; i<arrDays.length; i++){
+
+arrDays.forEach(() => {
   footer.push(0)
-}
+});
+
 
 function dayForFooter(isTrue, item) {
   footer[item] = footer[item] + Number(isTrue)
