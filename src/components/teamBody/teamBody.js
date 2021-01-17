@@ -3,18 +3,16 @@ import classNames from "classnames"
 import axios from 'axios'
 
 function TeamBody(props) {
-// console.log(props)
     let arrVacationInCurrentMonth =  []
     let arrVacationCurrentMember = props.member.vacations;
-
 
     const color = {
         borderLeft: '3px solid ' + props.color + ' 1)',
       };
-    const backgroundColor = {
-        // backgroundColor: props.color + ' 1)',
-        border: '1px solid ' + props.color + ' 1) '
-    }
+    // const backgroundColor = {
+    //     // backgroundColor: props.color + ' 1)',
+    //     border: '1px solid ' + props.color + ' 1) '
+    // }
 
     function convertedDate(day){
         return new Date(day.split(".").reverse().join("-"))
@@ -27,43 +25,43 @@ function TeamBody(props) {
             type:type,
             getDuraction () {
                 return (this.end - this.start)+1
-            }
-            
+            }   
         }
     }
 
     function vacationInCurrentMonth (arrVacationsCurrentMember) {
         let startMonth = new Date(convertedDate(props.arrDays[0].fullDate))
         let endMonth = new Date(convertedDate(props.arrDays[props.arrDays.length-1].fullDate))
-        for(let i=0; i<arrVacationsCurrentMember.length; i++) {  
-            let startVacation = convertedDate(arrVacationsCurrentMember[i].startDate)
-            let endVacation = convertedDate(arrVacationsCurrentMember[i].endDate)
+
+        arrVacationsCurrentMember.forEach((vacation) => {
+            let startVacation = convertedDate(vacation.startDate)
+            let endVacation = convertedDate(vacation.endDate)
             if(startVacation>=startMonth && endVacation<=endMonth) {
                 arrVacationInCurrentMonth.push(getObjVacation(
-                    arrVacationsCurrentMember[i].id,
+                    vacation.id,
                     new Date(startVacation.getTime()).getDate(),
                     new Date(endVacation.getTime()).getDate(),
-                    arrVacationsCurrentMember[i].type))
+                    vacation.type))
             } else if(startVacation>=startMonth && startVacation<=endMonth && endVacation>=endMonth){
                 arrVacationInCurrentMonth.push(getObjVacation(
-                    arrVacationsCurrentMember[i].id,
+                    vacation.id,
                     new Date(startVacation.getTime()).getDate(),
                     new Date(endMonth.getTime()).getDate(),
-                    arrVacationsCurrentMember[i].type))
+                    vacation.type))
             } else if(startVacation<=startMonth && endVacation<=endMonth && endVacation>=startMonth){
                 arrVacationInCurrentMonth.push(getObjVacation(
-                    arrVacationsCurrentMember[i].id,
+                    vacation.id,
                     new Date(startMonth.getTime()).getDate(),
                     new Date(endVacation.getTime()).getDate(),
-                    arrVacationsCurrentMember[i].type))
+                    vacation.type))
             } else if(startVacation<=startMonth && endVacation>=endMonth){
                 arrVacationInCurrentMonth.push(getObjVacation(
-                    arrVacationsCurrentMember[i].id,
+                    vacation.id,
                     new Date(startMonth.getTime()).getDate(),
                     new Date(endMonth.getTime()).getDate(),
-                    arrVacationsCurrentMember[i].type))
+                    vacation.type))
             }
-        }  
+          });
     }
 
     if(arrVacationCurrentMember.length){
@@ -91,13 +89,12 @@ function TeamBody(props) {
         return props.arrDays.filter((day)=>day.isVacation && !day.isDayOff).length    
     }
 
-for(let i = 0; i<props.arrDays.length; i++){
-    if(props.arrDays[i].isVacation ==! undefined ){
-       props.dayForFooter(props.arrDays[i].isVacation, i) 
-    }
-    
-}
-    
+    props.arrDays.forEach((day, index) => {
+        if(day.isVacation ==! undefined ){
+            props.dayForFooter(day.isVacation, index) 
+        }
+    });
+
 
     if(!props.isHide){
         return (
