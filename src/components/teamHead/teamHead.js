@@ -57,8 +57,8 @@ function TeamHead(props) {
 
                 {/* <span><i className="icon icon-001-group"></i></span> */}
             </td>
-            {props.arrDays.map(() =>
-                <td className='department_day day'></td>)
+            {props.arrDays.map((index) =>
+                <td  className='department_day day'></td>)
             }
             <td className="'department_sum day">
                 <span></span>

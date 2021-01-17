@@ -159,8 +159,8 @@ function dayForFooter(isTrue, item) {
               <TableHead arrDays={arrDays} /> 
             </thead>
 
-            {getDepartments().map((department) => (
-                <TableBody members={getDepartment(department, users)} department={department} vacationsDepartment = {getVacations(department, arrDepartmentVacations)}arrDays={arrDays} setNewVacations = {setNewVacations} dayForFooter = {dayForFooter}/>
+            {getDepartments().map((department, index) => (
+                <TableBody key={`team${index}`} members={getDepartment(department, users)} department={department} vacationsDepartment = {getVacations(department, arrDepartmentVacations)}arrDays={arrDays} setNewVacations = {setNewVacations} dayForFooter = {dayForFooter}/>
             ))}
             <TableFooter arrDays={arrDays} footer = {footer}/>
 
