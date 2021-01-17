@@ -9,10 +9,6 @@ function TeamBody(props) {
     const color = {
         borderLeft: '3px solid ' + props.color + ' 1)',
       };
-    // const backgroundColor = {
-    //     // backgroundColor: props.color + ' 1)',
-    //     border: '1px solid ' + props.color + ' 1) '
-    // }
 
     function convertedDate(day){
         return new Date(day.split(".").reverse().join("-"))
@@ -86,8 +82,11 @@ function TeamBody(props) {
     }
 
     function setCount() {
-        return props.arrDays.filter((day)=>day.isVacation && !day.isDayOff).length    
+      const sumOfUserVactions = props.arrDays.filter((day)=>day.isVacation && !day.isDayOff).length;
+      props.usersVacationsCount(sumOfUserVactions)
+      return sumOfUserVactions
     }
+
 
     props.arrDays.forEach((day, index) => {
         if(day.isVacation ==! undefined ){
@@ -102,26 +101,26 @@ function TeamBody(props) {
                 <td className="member_name" style={color}>
                     <span>{props.member.name}</span>
                 </td>
-                {props.arrDays.map((day) =>{
+                {props.arrDays.map((day, index) =>{
                     day.isVacation = false;
-                    let wrapperClass = classNames('member_day','day', { 'restDay': day.dayName === 'Sa' ||  day.dayName === 'Su'})
+                    let wrapperClass = classNames('member_day','day', { 'weekend': day.dayName === 'Sa' ||  day.dayName === 'Su'})
                     if(arrVacationInCurrentMonth && arrVacationInCurrentMonth.length) {
                         let vacationAtCurrentDay = arrVacationInCurrentMonth.filter((item) => +day.dayOfMonth >= +item.start && +day.dayOfMonth <= +item.end)
                         if(vacationAtCurrentDay.length) {
                             day.isVacation = true;
                             let typeVacationClass = classNames({ 'UnPd vacations': vacationAtCurrentDay[0].type === 'UnPd'}, {'Pd vacations': vacationAtCurrentDay[0].type === 'Pd'} )
                             if(+day.dayOfMonth === vacationAtCurrentDay[0].start) {
-                                return <td className={wrapperClass + ' vacationHover'} data-id={vacationAtCurrentDay[0].id } onClick={(e)=>deleteVacation(e.target.closest("td"))}>
+                                return <td key={`w-td${index}`} className={wrapperClass + ' vacationHover'} data-id={vacationAtCurrentDay[0].id } onClick={(e)=>deleteVacation(e.target.closest("td"))}>
                                     <span className={typeVacationClass} style={{ width: 'calc(34*' + vacationAtCurrentDay[0].getDuraction() + 'px - 3px)' , backgroundColor: props.color + ' 1)', border: '2px solid ' + props.color + ' 1)', color: props.color + ' 1)'}}>{vacationAtCurrentDay[0].type}</span></td>
                             } else {
-                                return <td className={wrapperClass + ' vacationHover'} data-id={vacationAtCurrentDay[0].id} onClick={(e)=>deleteVacation(e.target.closest("td"))}><span></span></td>
+                                return <td key={`td${index}`} className={wrapperClass + ' vacationHover'} data-id={vacationAtCurrentDay[0].id} onClick={(e)=>deleteVacation(e.target.closest("td"))}><span></span></td>
                             }
 
                         } else { 
-                            return <td className={wrapperClass}></td>  
+                            return <td key={`td${index}`} className={wrapperClass}></td>  
                         }
                     } else {
-                        return <td className={wrapperClass} ></td>
+                        return <td key={`td${index}`} className={wrapperClass} ></td>
                     }
                     })   
 

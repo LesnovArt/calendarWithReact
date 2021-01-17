@@ -22,8 +22,6 @@ function App() {
   const [isPopupShow, setIsPopupShow] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-
-
   function togglePopup (){
     setIsPopupShow( prev => !prev);
   }
@@ -148,6 +146,13 @@ function dayForFooter(isTrue, item) {
   footer[item] = footer[item] + Number(isTrue)
 }
 
+const usersVacationsArray = [];
+function usersVacationsCount(userVacations) {
+  if( userVacations > 0) {
+    usersVacationsArray.push(userVacations);
+  }
+}
+
         return (
       <div className="wrapper">
       <ErrorBoundary
@@ -169,14 +174,14 @@ function dayForFooter(isTrue, item) {
               <TableHead arrDays={arrDays} /> 
             </thead>
 
-            {getDepartments().map((department) => (
-                <TableBody members={getDepartment(department, users)} department={department} vacationsDepartment = {getVacations(department, arrDepartmentVacations)}arrDays={arrDays} setNewVacations = {setNewVacations} dayForFooter = {dayForFooter}/>
+            {getDepartments().map((department, index) => (
+                <TableBody key={`team${index}`} usersVacationsCount = {usersVacationsCount} members={getDepartment(department, users)} department={department} vacationsDepartment = {getVacations(department, arrDepartmentVacations)} arrDays={arrDays} setNewVacations = {setNewVacations} dayForFooter = {dayForFooter}/>
             ))}
-            <TableFooter arrDays={arrDays} footer = {footer}/>
+            <TableFooter footer = {footer}/>
 
           </table>
         </div>
-        <MonthVacationCounter currentDate={currentDate} members={members}/>
+        <MonthVacationCounter usersVacationsArray= {usersVacationsArray} footer={footer} currentDate={currentDate} members={members}/>
           { isPopupShow && 
           <Popup>
           {isPopupShow && !hasError ? <VacationForm/> : null}

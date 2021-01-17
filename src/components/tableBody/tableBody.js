@@ -52,7 +52,6 @@ function TableBody(props) {
 
 
     return (
-        
         <tbody className = "tableBody">
             <TeamHead teamName = {props.department} 
             members = {props.members} 
@@ -63,17 +62,18 @@ function TableBody(props) {
             /> 
             {
                 props.vacationsDepartment.members.map((member, index) =>
-                   <TeamBody member = {member} 
-                   key={`tbody+${index}`}
-                   color = {color} 
-                   isHide = {isHide} 
-                   arrDays={props.arrDays} 
-                   setNewVacations = {props.setNewVacations}
-                   getProcent = {getProcent}
-                   dayForFooter = {props.dayForFooter}/>
+                  <TeamBody member = {member} 
+                  key={`tbody+${index}`}
+                  color = {color} 
+                  isHide = {isHide} 
+                  arrDays={props.arrDays} 
+                  setNewVacations = {props.setNewVacations}
+                  getProcent = {getProcent}
+                  dayForFooter = {props.dayForFooter}
+                  usersVacationsCount = {props.usersVacationsCount}
+                   />
                )
             }
-            
         </tbody>
     );
 }

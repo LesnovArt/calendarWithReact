@@ -1,7 +1,25 @@
 import React from "react";
 import style from "./monthVacationCounter.module.scss";
 
-function MonthVacationCounter({ currentDate }) {
+function MonthVacationCounter({ currentDate, footer, members, usersVacationsArray }) {
+
+  function getTotalPercentForMonth () {
+    const totalPercentForMonth = getTotalVacationsInMonth() * 100 / getTotalDaysInMonth();
+    return Math.round(totalPercentForMonth);
+  }
+
+ function getTotalVacationsInMonth() {
+       const totalVacSum = footer.reduce((acc, sumForMember) => {
+      return acc + sumForMember;
+    })
+    return totalVacSum;
+ }
+
+  function getTotalDaysInMonth() {
+    const totalDays = members.length * footer.length;
+    return totalDays;
+  }
+
   return (
     <div className={style.totalBlock}>
       <div className={style.totalBlock__title}>
@@ -12,8 +30,8 @@ function MonthVacationCounter({ currentDate }) {
         <span className={style.iconGroup}>
           <i className="icon icon-001-group"></i>
         </span>
-        <span className={style.teamsCount}>8</span>
-        <span className={style.teamsPercent}>12%</span>
+        <span className={style.teamsCount}>{usersVacationsArray.length/2}</span>
+        <span className={style.teamsPercent}>{`${getTotalPercentForMonth()} %`}</span>
       </div>
     </div>
   );

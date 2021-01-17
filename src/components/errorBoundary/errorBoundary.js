@@ -12,15 +12,6 @@ export default class  ErrorBoundary extends Component {
     }
 
     render() {
-        // if(this.props.hasError){
-        //     return (
-        //         <div className="error-wrapper">
-        //             {/*<img src="https://images.app.goo.gl/oUrTssJQU5sNgnKy7" alt=""/>*/}
-        //             Вай мэээ.... Братан, всё сломалось
-        //         </div>
-        //     )
-        // }
-
         return  this.props.children
     }
 }
