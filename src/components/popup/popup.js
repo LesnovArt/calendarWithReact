@@ -16,9 +16,9 @@ export default function Popup ({ children }) {
 };
 
 Popup.propTypes = {
-    children: PropTypes.objectOf(PropTypes.array),
+    children: PropTypes.array,
 };
 
 Popup.defaultProps = {
-  children: {},
+  children: [],
 };

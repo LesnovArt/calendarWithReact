@@ -89,7 +89,7 @@ function TeamBody(props) {
     }
 
     props.arrDays.forEach((day, index) => {
-        if(day.isVacation ==! undefined ){
+        if(day.isVacation !== undefined ){
             props.dayForFooter(day.isVacation, index) 
         }
     });
