@@ -1,25 +1,14 @@
 import React from "react";
 import style from "./monthVacationCounter.module.scss";
+import PropTypes from "prop-types";
+import { member } from "../"
 
 function MonthVacationCounter({ currentDate, footer, members, usersVacationsArray }) {
 
-  function getTotalPercentForMonth () {
-    const totalPercentForMonth = getTotalVacationsInMonth() * 100 / getTotalDaysInMonth();
-    return Math.round(totalPercentForMonth);
-  }
-
- function getTotalVacationsInMonth() {
-       const totalVacSum = footer.reduce((acc, sumForMember) => {
-      return acc + sumForMember;
-    })
-    return totalVacSum;
- }
-
-  function getTotalDaysInMonth() {
-    const totalDays = members.length * footer.length;
-    return totalDays;
-  }
-
+  const getTotalVacationsInMonth = () => footer.reduce((acc, sumForMember) => acc + sumForMember);
+  const getTotalPercentForMonth = ()  => Math.round(getTotalVacationsInMonth() * 100 / getTotalDaysInMonth());
+  const getTotalDaysInMonth = () => members.length * footer.length;
+ console.log(  usersVacationsArray)
   return (
     <div className={style.totalBlock}>
       <div className={style.totalBlock__title}>
@@ -37,4 +26,14 @@ function MonthVacationCounter({ currentDate, footer, members, usersVacationsArra
   );
 }
 
+MonthVacationCounter.propTypes = {
+  currentDate: PropTypes.object,
+  footer: PropTypes.arrayOf(PropTypes.number), 
+  member,
+  usersVacationsArray: PropTypes.arrayOf(PropTypes.number)
+}
+
+MonthVacationCounter.dafaultProps = {
+  currentDate: "empty date",
+}
 export default MonthVacationCounter;

@@ -1,13 +1,17 @@
 import React from "react";
 import style from "./monthSwitcher.module.scss";
+import PropTypes from "prop-types";
 
 function MonthSwitcher({ currentDate, setCurrentDate }) {
+
   function currentMonthName() {
     return currentDate.format("MMMM YYYY");
   }
+
   function prevMonth() {
     return currentDate.clone().subtract(1, "month");
   }
+  
   function nextMonth() {
     return currentDate.clone().add(1, "month");
   }
@@ -33,6 +37,16 @@ function MonthSwitcher({ currentDate, setCurrentDate }) {
       </button>
     </div>
   );
-}
+};
+
+MonthSwitcher.propTypes = {
+  currentDate: PropTypes.object,
+  setCurrentDate: PropTypes.func,
+};
+
+MonthSwitcher.defaultProps = {
+  currentDate: "empty date",
+  setCurrentDate: () => {},
+};
 
 export default MonthSwitcher;
