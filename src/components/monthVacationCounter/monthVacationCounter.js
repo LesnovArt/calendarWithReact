@@ -20,8 +20,6 @@ function MonthVacationCounter({ currentDate, footer, members, usersVacationsArra
     return totalDays;
   }
 
-  console.log(usersVacationsArray.length/2)
-
   return (
     <div className={style.totalBlock}>
       <div className={style.totalBlock__title}>

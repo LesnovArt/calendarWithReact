@@ -1,6 +1,7 @@
 import React from "react";
-import { useState } from 'react'
-import classNames from "classnames"
+import { useState } from 'react';
+import classNames from "classnames";
+import style from "./teamHead.module.scss";
 
 function TeamHead(props) {
     const [rotateArrow, setClass] = useState(false)
@@ -20,13 +21,13 @@ function TeamHead(props) {
     let arrWeekends = props.arrDays.filter((day)=>day.isDayOff).length
     let procent = Math.round((props.procent / ((props.arrDays.length-arrWeekends) * props.members.length)) * 100)
 
-    let wrapperClass = classNames('department_hideArrow', { 'rotateArrow': rotateArrow === true })
+    let wrapperClass = classNames(`${style.department_hideArrow}`, { 'rotateArrow': rotateArrow === true })
     return (
-        <tr className="department" style={color}>
-            <td className="department_inform">
-                <span className="department_title">{props.teamName}</span>
+        <tr className={style.department} style={color}>
+            <td className={style.department_inform}>
+                <span className={style.department_title}>{props.teamName}</span>
                 <div>
-                                    <span className="department_countMembersIcon">
+                                    <span className={style.department_countMembersIcon}>
                     {/* <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g opacity="0.5" clip-path="url(#clip0)">
                         <path
@@ -55,18 +56,18 @@ function TeamHead(props) {
                     </defs>
                     </svg> */}
                 </span>
-                <span className="department_countMembers">{props.members.length}</span>
-                <span className="department_procent" style={backgroundColor} >{procent}%</span>
+                <span className={style.department_countMembers}>{props.members.length}</span>
+                <span className={style.department_procent} style={backgroundColor} >{procent}%</span>
                 <span className={wrapperClass} onClick = {() => clickArrow()}><i className="icon icon-chevron-down-solid"></i></span>
                 </div>
 
 
                 {/* <span><i className="icon icon-001-group"></i></span> */}
             </td>
-            {props.arrDays.map((index) =>
-                <td  className='department_day day'></td>)
+            {props.arrDays.map((cell, i) =>
+                <td key={`team-head${props.arrDays[i].fullDate}`} className={`${style.department_day} day`}></td>)
             }
-            <td className="'department_sum day">
+            <td className={`${style.department_sum} day`}>
                 <span></span>
             </td>             
         </tr>

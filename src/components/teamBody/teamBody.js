@@ -103,7 +103,7 @@ for(let i = 0; i<props.arrDays.length; i++){
                 </td>
                 {props.arrDays.map((day, index) =>{
                     day.isVacation = false;
-                    let wrapperClass = classNames('member_day','day', { 'restDay': day.dayName === 'Sa' ||  day.dayName === 'Su'})
+                    let wrapperClass = classNames('member_day','day', { 'weekend': day.dayName === 'Sa' ||  day.dayName === 'Su'})
                     if(arrVacationInCurrentMonth && arrVacationInCurrentMonth.length) {
                         let vacationAtCurrentDay = arrVacationInCurrentMonth.filter((item) => +day.dayOfMonth >= +item.start && +day.dayOfMonth <= +item.end)
                         if(vacationAtCurrentDay.length) {
