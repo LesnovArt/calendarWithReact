@@ -5,8 +5,8 @@ export default class  ErrorBoundary extends Component {
 
     constructor(props) {
         super(props);
-            this.showError = props.showError();
-            this.togglePopup = props.togglePopup();
+            this.showError = props.showError;
+            this.togglePopup = props.togglePopup;
     };
 
     componentDidCatch(error, errorInfo) {

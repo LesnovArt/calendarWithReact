@@ -75,7 +75,7 @@ function App() {
       });
 
       let departments = Array.from (set);
-  
+
       return departments
     }
 
