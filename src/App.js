@@ -138,8 +138,13 @@ function dayForFooter(isTrue, item) {
   footer[item] = footer[item] + Number(isTrue)
 }
 
-function getTotalPercent () {
-  
+
+const usersVacationsArray = [];
+function usersVacationsCount(userVacations) {
+  if( userVacations > 0) {
+    // console.log(userVacations)
+    usersVacationsArray.push(userVacations);
+  }
 }
 
         return (
@@ -164,13 +169,13 @@ function getTotalPercent () {
             </thead>
 
             {getDepartments().map((department, index) => (
-                <TableBody key={`team${index}`} members={getDepartment(department, users)} department={department} vacationsDepartment = {getVacations(department, arrDepartmentVacations)}arrDays={arrDays} setNewVacations = {setNewVacations} dayForFooter = {dayForFooter}/>
+                <TableBody key={`team${index}`} usersVacationsCount = {usersVacationsCount} members={getDepartment(department, users)} department={department} vacationsDepartment = {getVacations(department, arrDepartmentVacations)} arrDays={arrDays} setNewVacations = {setNewVacations} dayForFooter = {dayForFooter}/>
             ))}
             <TableFooter footer = {footer}/>
 
           </table>
         </div>
-        <MonthVacationCounter currentDate={currentDate} members={members}/>
+        <MonthVacationCounter usersVacationsArray= {usersVacationsArray} footer={footer} currentDate={currentDate} members={members}/>
           { isPopupShow && 
           <Popup>
           {isPopupShow && !hasError ? <VacationForm/> : null}

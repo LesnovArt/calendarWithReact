@@ -11,10 +11,6 @@ function TeamBody(props) {
     const color = {
         borderLeft: '3px solid ' + props.color + ' 1)',
       };
-    // const backgroundColor = {
-    //     // backgroundColor: props.color + ' 1)',
-    //     border: '1px solid ' + props.color + ' 1) '
-    // }
 
     function convertedDate(day){
         return new Date(day.split(".").reverse().join("-"))
@@ -88,16 +84,16 @@ function TeamBody(props) {
     }
 
     function setCount() {
-        return props.arrDays.filter((day)=>day.isVacation && !day.isDayOff).length    
+      const sumOfUserVactions = props.arrDays.filter((day)=>day.isVacation && !day.isDayOff).length;
+      props.usersVacationsCount(sumOfUserVactions)
+      return sumOfUserVactions
     }
 
 for(let i = 0; i<props.arrDays.length; i++){
     if(props.arrDays[i].isVacation !== undefined ){
        props.dayForFooter(props.arrDays[i].isVacation, i) 
     }
-    
 }
-    
 
     if(!props.isHide){
         return (
