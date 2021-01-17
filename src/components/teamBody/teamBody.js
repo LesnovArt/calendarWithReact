@@ -1,6 +1,7 @@
 import React from "react";
-import classNames from "classnames"
-import axios from 'axios'
+import classNames from "classnames";
+import axios from "axios";
+import PropTypes from "prop-types";
 
 function TeamBody(props) {
     let arrVacationInCurrentMonth =  []
@@ -65,9 +66,9 @@ function TeamBody(props) {
     }
          
     function deleteVacation(element) {
-    let isDelete = window.confirm("Delete this vacation?")
-    let attribute = element.getAttribute('data-id'); 
-    const url = `http://localhost:3004/vacations/${attribute}`;   
+      let isDelete = window.confirm("Delete this vacation?")
+      let attribute = element.getAttribute('data-id'); 
+      const url = `http://localhost:3004/vacations/${attribute}`;   
         if(isDelete){
             axios
             .delete(url)
@@ -87,13 +88,11 @@ function TeamBody(props) {
       return sumOfUserVactions
     }
 
-
     props.arrDays.forEach((day, index) => {
         if(day.isVacation ==! undefined ){
             props.dayForFooter(day.isVacation, index) 
         }
     });
-
 
     if(!props.isHide){
         return (
@@ -115,23 +114,20 @@ function TeamBody(props) {
                             } else {
                                 return <td key={`td${index}`} className={wrapperClass + ' vacationHover'} data-id={vacationAtCurrentDay[0].id} onClick={(e)=>deleteVacation(e.target.closest("td"))}><span></span></td>
                             }
-
                         } else { 
                             return <td key={`td${index}`} className={wrapperClass}></td>  
                         }
                     } else {
                         return <td key={`td${index}`} className={wrapperClass} ></td>
                     }
-                    })   
-
+                    })
                 }
                     {
                         props.getProcent(setCount(), props.member.realm) 
                     }
-
                 <td className="member_sum day">
                    <span>{setCount()}</span>
-                </td>                
+                </td>
             </tr>
         )
     } 
@@ -140,4 +136,51 @@ function TeamBody(props) {
     }
 }
 
+TeamBody.propTypes = {
+  arrDays: PropTypes.arrayOf(PropTypes.shape({
+    dayName: PropTypes.string,
+    dayOfMonth: PropTypes.number,
+    fullDate: PropTypes.string,
+    isDayOff: PropTypes.bool,
+    isVacation: PropTypes.bool,
+    })
+  ).isRequired,
+  color: PropTypes.string,
+  dayForFooter: PropTypes.func,
+  getProcent: PropTypes.func,
+  isHide: PropTypes.bool,
+  members: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    realm: PropTypes.string,
+    vacations: PropTypes.arrayOf(PropTypes.shape({
+      endDate: PropTypes.string,
+      id: PropTypes.number,
+      startDate: PropTypes.string,
+      type: PropTypes.string,
+      userId: PropTypes.number,
+      }))
+  })).isRequired,
+  setNewVacations: PropTypes.func,
+  usersVacationsCount: PropTypes.func,
+};
+
+TeamBody.defaultProps = {
+  arrDays: [],
+  color: "255, 255, 255",
+  dayForFooter: () => {},
+  getProcent: () => {},
+  isHide: false,
+  department: 'unknown',
+  members: [],
+  setNewVacations: () => {},
+  usersVacationsCount:() => {},
+};
+
 export default TeamBody;
+
+
+
+
+
+

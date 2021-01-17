@@ -1,24 +1,12 @@
 import React from "react";
 import style from "./monthVacationCounter.module.scss";
+import PropTypes from "prop-types";
 
 function MonthVacationCounter({ currentDate, footer, members, usersVacationsArray }) {
 
-  function getTotalPercentForMonth () {
-    const totalPercentForMonth = getTotalVacationsInMonth() * 100 / getTotalDaysInMonth();
-    return Math.round(totalPercentForMonth);
-  }
-
- function getTotalVacationsInMonth() {
-       const totalVacSum = footer.reduce((acc, sumForMember) => {
-      return acc + sumForMember;
-    })
-    return totalVacSum;
- }
-
-  function getTotalDaysInMonth() {
-    const totalDays = members.length * footer.length;
-    return totalDays;
-  }
+  const getTotalVacationsInMonth = () => footer.reduce((acc, sumForMember) => acc + sumForMember);
+  const getTotalPercentForMonth = ()  => Math.round(getTotalVacationsInMonth() * 100 / getTotalDaysInMonth());
+  const getTotalDaysInMonth = () => members.length * footer.length;
 
   return (
     <div className={style.totalBlock}>
@@ -35,6 +23,25 @@ function MonthVacationCounter({ currentDate, footer, members, usersVacationsArra
       </div>
     </div>
   );
-}
+};
+
+MonthVacationCounter.propTypes = {
+  currentDate: PropTypes.object.isRequired,
+  footer: PropTypes.arrayOf(PropTypes.number), 
+  members: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    realm: PropTypes.string,
+    }).isRequired
+  ),
+  usersVacationsArray: PropTypes.arrayOf(PropTypes.number).isRequired
+};
+
+MonthVacationCounter.dafaultProps = {
+  currentDate: "empty date",
+  footer: [], 
+  members: [],
+  usersVacationsArray: []
+};
 
 export default MonthVacationCounter;

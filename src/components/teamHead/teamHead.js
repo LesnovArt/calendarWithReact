@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from 'react';
 import classNames from "classnames";
 import style from "./teamHead.module.scss";
+import PropTypes from "prop-types";
 
 function TeamHead(props) {
     const [rotateArrow, setClass] = useState(false)
@@ -69,9 +70,38 @@ function TeamHead(props) {
             }
             <td className={`${style.department_sum} day`}>
                 <span></span>
-            </td>             
+            </td>
         </tr>
         )
 }
+
+TeamHead.propTypes = {
+  arrDays: PropTypes.arrayOf(PropTypes.shape({
+    dayName: PropTypes.string,
+    dayOfMonth: PropTypes.number,
+    fullDate: PropTypes.string,
+    isDayOff: PropTypes.bool,
+    isVacation: PropTypes.bool,
+    })
+  ).isRequired,
+  color: PropTypes.string,
+  members: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    realm: PropTypes.string,
+  })).isRequired,
+  procent: PropTypes.number,
+  teamName: PropTypes.string,
+  toggleDepartment: PropTypes.func,
+};
+
+TeamHead.defaultProps = {
+  arrDays: [],
+  color: "255, 255, 255",
+  members: [],
+  procent: 0,
+  teamName: 'unknown',
+  toggleDepartment: () => {},
+};
 
 export default TeamHead;

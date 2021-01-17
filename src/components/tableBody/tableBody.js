@@ -2,8 +2,10 @@ import React from "react";
 import { useState, useEffect } from 'react'
 import TeamHead from "../teamHead/teamHead";
 import TeamBody from "../teamBody/teamBody";
+import PropTypes from "prop-types";
 
-function TableBody(props) {   
+function TableBody (props) {
+
     let color;
     (function departmentColor (){
         switch (props.department) {
@@ -35,9 +37,8 @@ function TableBody(props) {
         setToggleDepartment (prevCount => !prevCount)
     }
 
-
- let arrCount = []
- let result = procent;
+    let arrCount = []
+    let result = procent;
     function getProcent(count, realm) {
         arrCount.push({
             count: count,
@@ -78,4 +79,62 @@ function TableBody(props) {
     );
 }
 
+TableBody.propTypes = {
+  arrDays: PropTypes.arrayOf(PropTypes.shape({
+    dayName: PropTypes.string,
+    dayOfMonth: PropTypes.number,
+    fullDate: PropTypes.string,
+    isDayOff: PropTypes.bool,
+    isVacation: PropTypes.bool,
+    })
+  ).isRequired,
+  dayForFooter: PropTypes.func,
+  department: PropTypes.string.isRequired,
+  members: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    realm: PropTypes.string,
+    }).isRequired
+  ),
+  setNewVacations: PropTypes.func,
+  usersVacationsCount: PropTypes.func,
+  vacationsDepartment: PropTypes.shape({
+    members: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      realm: PropTypes.string,
+      vacations: PropTypes.arrayOf(PropTypes.shape({
+        endDate: PropTypes.string,
+        id: PropTypes.number,
+        startDate: PropTypes.string,
+        type: PropTypes.string,
+        userId: PropTypes.number,
+        }))
+      })),
+    realm: PropTypes.string,
+  }).isRequired
+};
+
+TableBody.defaultProps = {
+  arrDays: PropTypes.arrayOf(PropTypes.shape({
+    dayName: 'empty',
+    dayOfMonth: 0,
+    fullDate: '0',
+    isDayOff: false,
+    isVacation: false,
+    })
+  ),
+  dayForFooter: () => {},
+  department: 'unknown',
+  members: [],
+  setNewVacations: () => {},
+  usersVacationsCount:() => {},
+  vacationsDepartment: {}
+};
+
 export default TableBody;
+
+
+
+
+

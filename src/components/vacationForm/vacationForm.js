@@ -8,7 +8,6 @@ import axios from "axios";
 
 export default function VacationForm () {
 
-
     const {togglePopup, members, setNewVacations} = useContext(PopupContext);
     const [startDate,setStartDate] = useState()
     const [endDate,setEndDate] = useState()
@@ -29,12 +28,12 @@ export default function VacationForm () {
 
     function getStartDate (event) {
       event.preventDefault()
-        setStartDate(event.target.value);
+      setStartDate(event.target.value);
     }
 
     function getEndDate (event) {
       event.preventDefault()
-        setEndDate(event.target.value);
+      setEndDate(event.target.value);
     }
 
     function getUserId(event) {    
@@ -64,7 +63,6 @@ export default function VacationForm () {
       }else{
           setValid(false)
       }
-
     }
 
     function ValidationMessage(){
@@ -73,17 +71,12 @@ export default function VacationForm () {
       )
     }
 
-
-
     if(startDate && endDate){
       let start = moment(startDate);
       let end = moment(endDate);
       let duration = moment.duration(start.diff(end));
       duration > 0 ? vacationCounter = duration.asDays() : vacationCounter = duration.asDays() * -1;
     }
-
-
-
 
     return (
         <div className={styles.form}>
