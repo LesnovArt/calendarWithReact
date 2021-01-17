@@ -8,6 +8,9 @@ function TeamHead(props) {
         borderLeft: '3px solid ' + props.color + ' 1)',
         background: props.color + ' 0.2)',
       };
+      const backgroundColor = {
+        background:props.color + ' 1)'
+      }
 
     function clickArrow(){
        props.toggleDepartment(props.teamName)
@@ -22,7 +25,8 @@ function TeamHead(props) {
         <tr className="department" style={color}>
             <td className="department_inform">
                 <span className="department_title">{props.teamName}</span>
-                <span className="department_countMembersIcon">
+                <div>
+                                    <span className="department_countMembersIcon">
                     {/* <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g opacity="0.5" clip-path="url(#clip0)">
                         <path
@@ -52,8 +56,10 @@ function TeamHead(props) {
                     </svg> */}
                 </span>
                 <span className="department_countMembers">{props.members.length}</span>
-                <span className="department_procent">{procent}%</span>
+                <span className="department_procent" style={backgroundColor} >{procent}%</span>
                 <span className={wrapperClass} onClick = {() => clickArrow()}><i className="icon icon-chevron-down-solid"></i></span>
+                </div>
+
 
                 {/* <span><i className="icon icon-001-group"></i></span> */}
             </td>
