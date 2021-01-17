@@ -9,8 +9,8 @@ import axios from "axios";
 export default function VacationForm () {
 
     const {togglePopup, members, setNewVacations} = useContext(PopupContext);
-    const [startDate,setStartDate] = useState()
-    const [endDate,setEndDate] = useState()
+    const [startDate,setStartDate] = useState('')
+    const [endDate,setEndDate] = useState('')
     const [vacationType, setVacationType] = useState('Pd')
     const [userId, setUserId] = useState(1)
     const [valid, setValid] = useState(true)
