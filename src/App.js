@@ -138,6 +138,10 @@ function dayForFooter(isTrue, item) {
   footer[item] = footer[item] + Number(isTrue)
 }
 
+function getTotalPercent () {
+  
+}
+
         return (
       <div className="wrapper">
       <ErrorBoundary
@@ -162,7 +166,7 @@ function dayForFooter(isTrue, item) {
             {getDepartments().map((department, index) => (
                 <TableBody key={`team${index}`} members={getDepartment(department, users)} department={department} vacationsDepartment = {getVacations(department, arrDepartmentVacations)}arrDays={arrDays} setNewVacations = {setNewVacations} dayForFooter = {dayForFooter}/>
             ))}
-            <TableFooter arrDays={arrDays} footer = {footer}/>
+            <TableFooter footer = {footer}/>
 
           </table>
         </div>
