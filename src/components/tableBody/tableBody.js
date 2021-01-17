@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import TeamHead from "../teamHead/teamHead";
 import TeamBody from "../teamBody/teamBody";
 
@@ -37,19 +37,19 @@ function TableBody(props) {
 
 
  let arrCount = []
-//  let result = 0;
+ let result = procent;
     function getProcent(count, realm) {
         arrCount.push({
             count: count,
             realm: realm
         })
-        let result = arrCount.reduce(function(sum, current) {
+        result = arrCount.reduce(function(sum, current) {
             return current.count + sum;
           }, 0);
-
-          setProcent(result)
     }
-
+    useEffect(() => {
+        setProcent(result);
+      });
 
     return (
         <tbody className = "tableBody">

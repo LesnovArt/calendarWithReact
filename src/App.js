@@ -125,9 +125,7 @@ function addVacationToUser(arrVacation,departmentMember) {
 
 }
   function getDepartment(department, arrMembers) {
-    console.log(arrMembers.filter((member) => member.realm === department))
     return arrMembers.filter((member) => member.realm === department);
-
   }
   function getVacations(department, vacationsDepartments) {
     const result = vacationsDepartments.find(item => item.realm === department);
