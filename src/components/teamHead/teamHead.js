@@ -5,7 +5,10 @@ import style from "./teamHead.module.scss";
 import PropTypes from "prop-types";
 
 function TeamHead(props) {
-    const [rotateArrow, setClass] = useState(false)
+    const [rotateArrow, setClass] = useState(false);
+    let wrapperClass = classNames(`${style.department_hideArrow}`, { 'rotateArrow': rotateArrow === true })   
+    let arrWeekends = props.arrDays.filter((day)=>day.isDayOff).length;
+    let percent = Math.round((props.percent / ((props.arrDays.length-arrWeekends) * props.members.length)) * 100);
     const color = {
         borderLeft: '3px solid ' + props.color + ' 1)',
         background: props.color + ' 0.2)',
@@ -19,18 +22,14 @@ function TeamHead(props) {
        setClass(prevCount => !prevCount)
     }
 
-    let arrWeekends = props.arrDays.filter((day)=>day.isDayOff).length
-    let procent = Math.round((props.procent / ((props.arrDays.length-arrWeekends) * props.members.length)) * 100)
-
-    let wrapperClass = classNames(`${style.department_hideArrow}`, { 'rotateArrow': rotateArrow === true })
     return (
         <tr className={style.department} style={color}>
             <td className={style.department_inform}>
                 <span className={style.department_title}>{props.teamName}</span>
                 <div>
-                                    <span className={style.department_countMembersIcon}>
-                    {/* <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g opacity="0.5" clip-path="url(#clip0)">
+                    <span className={style.department_countMembersIcon}>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g opacity="0.5" clipPath="url(#clip0)">
                         <path
                         d="M10.2676 6.40607H9.3396C9.43419 6.66505 9.48587 6.94454 9.48587 7.23585V10.7433C9.48587 10.8647 9.46473 10.9813 9.42627 11.0897H10.9605C11.5336 11.0897 11.9999 10.6235 11.9999 10.0504V8.13831C11.9999 7.18316 11.2228 6.40607 10.2676 6.40607Z"
                         fill="black" />
@@ -55,15 +54,12 @@ function TeamHead(props) {
                         <rect width="12" height="12" fill="white" transform="translate(0 0.00012207)" />
                         </clipPath>
                     </defs>
-                    </svg> */}
+                    </svg>
                 </span>
                 <span className={style.department_countMembers}>{props.members.length}</span>
-                <span className={style.department_procent} style={backgroundColor} >{procent}%</span>
+                <span className={style.department_percent} style={backgroundColor} >{percent}%</span>
                 <span className={wrapperClass} onClick = {() => clickArrow()}><i className="icon icon-chevron-down-solid"></i></span>
                 </div>
-
-
-                {/* <span><i className="icon icon-001-group"></i></span> */}
             </td>
             {props.arrDays.map((cell, i) =>
                 <td key={`team-head${props.arrDays[i].fullDate}`} className={`${style.department_day} day`}></td>)
@@ -90,7 +86,7 @@ TeamHead.propTypes = {
     name: PropTypes.string,
     realm: PropTypes.string,
   })).isRequired,
-  procent: PropTypes.number,
+  percent: PropTypes.number,
   teamName: PropTypes.string,
   toggleDepartment: PropTypes.func,
 };
@@ -99,7 +95,7 @@ TeamHead.defaultProps = {
   arrDays: [],
   color: "255, 255, 255",
   members: [],
-  procent: 0,
+  percent: 0,
   teamName: 'unknown',
   toggleDepartment: () => {},
 };

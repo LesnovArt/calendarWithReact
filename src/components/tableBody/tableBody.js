@@ -5,8 +5,12 @@ import TeamBody from "../teamBody/teamBody";
 import PropTypes from "prop-types";
 
 function TableBody (props) {
-
     let color;
+    const [isHide, setToggleDepartment] = useState(false);
+    const [percent, setPercent] = useState(0);
+    let arrCount = [];
+    let result = percent;
+
     (function departmentColor (){
         switch (props.department) {
         case 'Frontend Team':
@@ -30,16 +34,11 @@ function TableBody (props) {
         }
     })()
 
-    const [isHide, setToggleDepartment] = useState(false)
-    const [procent, setProcent] = useState(0)
-
     function toggleDepartment (){
         setToggleDepartment (prevCount => !prevCount)
     }
 
-    let arrCount = []
-    let result = procent;
-    function getProcent(count, realm) {
+    function getPercent(count, realm) {
         arrCount.push({
             count: count,
             realm: realm
@@ -48,8 +47,9 @@ function TableBody (props) {
             return current.count + sum;
           }, 0);
     }
+    
     useEffect(() => {
-        setProcent(result);
+        setPercent(result);
       });
 
     return (
@@ -59,7 +59,7 @@ function TableBody (props) {
             color = {color} 
             toggleDepartment = {toggleDepartment} 
             arrDays={props.arrDays}
-            procent = {procent}
+            percent = {percent}
             /> 
             {
                 props.vacationsDepartment.members.map((member, index) =>
@@ -69,7 +69,7 @@ function TableBody (props) {
                   isHide = {isHide} 
                   arrDays={props.arrDays} 
                   setNewVacations = {props.setNewVacations}
-                  getProcent = {getProcent}
+                  getPercent = {getPercent}
                   dayForFooter = {props.dayForFooter}
                   usersVacationsCount = {props.usersVacationsCount}
                    />
