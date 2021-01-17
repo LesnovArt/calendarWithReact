@@ -40,7 +40,7 @@ function MonthSwitcher({ currentDate, setCurrentDate }) {
 };
 
 MonthSwitcher.propTypes = {
-  currentDate: PropTypes.object,
+  currentDate: PropTypes.object.isRequired,
   setCurrentDate: PropTypes.func,
 };
 

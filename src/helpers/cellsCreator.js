@@ -16,5 +16,6 @@ export function createCells(date, memberId = 0) {
     currentDay.add(1,'d');
     arrDays.push(day);
   }
+  
   return arrDays;
 }
