@@ -23,8 +23,6 @@ function App() {
   const [isPopupShow, setIsPopupShow] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-
-
   function togglePopup (){
     setIsPopupShow( prev => !prev);
   }
@@ -138,11 +136,9 @@ function dayForFooter(isTrue, item) {
   footer[item] = footer[item] + Number(isTrue)
 }
 
-
 const usersVacationsArray = [];
 function usersVacationsCount(userVacations) {
   if( userVacations > 0) {
-    // console.log(userVacations)
     usersVacationsArray.push(userVacations);
   }
 }

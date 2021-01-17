@@ -52,7 +52,6 @@ function TableBody(props) {
 
 
     return (
-        
         <tbody className = "tableBody">
             <TeamHead teamName = {props.department} 
             members = {props.members} 
@@ -75,7 +74,6 @@ function TableBody(props) {
                    />
                )
             }
-            
         </tbody>
     );
 }

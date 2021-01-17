@@ -20,7 +20,7 @@ function MonthVacationCounter({ currentDate, footer, members, usersVacationsArra
     return totalDays;
   }
 
-  // console.log(usersVacationsArray)
+  console.log(usersVacationsArray.length/2)
 
   return (
     <div className={style.totalBlock}>
@@ -32,7 +32,7 @@ function MonthVacationCounter({ currentDate, footer, members, usersVacationsArra
         <span className={style.iconGroup}>
           <i className="icon icon-001-group"></i>
         </span>
-        <span className={style.teamsCount}>8</span>
+        <span className={style.teamsCount}>{usersVacationsArray.length/2}</span>
         <span className={style.teamsPercent}>{`${getTotalPercentForMonth()} %`}</span>
       </div>
     </div>
