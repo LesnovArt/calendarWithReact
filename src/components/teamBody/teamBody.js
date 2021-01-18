@@ -4,9 +4,8 @@ import axios from "axios";
 import PropTypes from "prop-types";
 
 function TeamBody(props) {
-    let arrVacationInCurrentMonth =  []
+    let arrVacationInCurrentMonth =  [];
     let arrVacationCurrentMember = props.member.vacations;
-
     const color = {
         borderLeft: '3px solid ' + props.color + ' 1)',
       };
@@ -14,6 +13,7 @@ function TeamBody(props) {
     function convertedDate(day){
         return new Date(day.split(".").reverse().join("-"))
     }
+    
     function getObjVacation(id,start,end,type) {
         return {
             id: id,
@@ -123,7 +123,7 @@ function TeamBody(props) {
                     })
                 }
                     {
-                        props.getProcent(setCount(), props.member.realm) 
+                        props.getPercent(setCount(), props.member.realm) 
                     }
                 <td className="member_sum day">
                    <span>{setCount()}</span>
@@ -147,7 +147,7 @@ TeamBody.propTypes = {
   ).isRequired,
   color: PropTypes.string,
   dayForFooter: PropTypes.func,
-  getProcent: PropTypes.func,
+  getPercent: PropTypes.func,
   isHide: PropTypes.bool,
   members: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
@@ -169,7 +169,7 @@ TeamBody.defaultProps = {
   arrDays: [],
   color: "255, 255, 255",
   dayForFooter: () => {},
-  getProcent: () => {},
+  getPercent: () => {},
   isHide: false,
   department: 'unknown',
   members: [],

@@ -3,50 +3,42 @@
     {
       "id": 1,
       "name": "FE_User_1",
-      "realm": "Frontend Team",
-      "vacation": []
+      "realm": "Frontend Team"
     },
     {
       "id": 2,
       "name": "FE_User_2",
-      "realm": "Frontend Team",
-      "vacation": []
+      "realm": "Frontend Team"
     },
     {
       "id": 3,
       "name": "FE_User_3",
-      "realm": "Frontend Team",
-      "vacation": []
+      "realm": "Frontend Team"
     },
     {
       "id": 4,
       "name": "BA_User_1",
-      "realm": "Backend Team",
-      "vacation": []
+      "realm": "Backend Team"
     },
     {
       "id": 5,
       "name": "BA_User_2",
-      "realm": "Backend Team",
-      "vacation": []
+      "realm": "Backend Team"
     },
     {
       "id": 6,
       "name": "DS_User_1",
-      "realm": "Designers",
-      "vacation": []
+      "realm": "Designers"
     },
     {
       "id": 7,
       "name": "MS_User_1",
-      "realm": "Manager",
-      "vacation": []
+      "realm": "Manager"
     },
     {
       "id": 8,
       "name": "MS_User_2",
-      "realm": "Manager",
-      "vacation": []
+      "realm": "Manager"
     }
   ],
   "vacations": [
@@ -142,24 +134,24 @@
       "type": "UnPd"
     },
     {
-      "id": 1610802775706,
-      "startDate": "17.01.2021",
-      "endDate": "21.01.2021",
-      "userId": 1,
-      "type": "Pd"
-    },
-    {
-      "id": 1610802880490,
-      "startDate": "11.01.2021",
-      "endDate": "21.01.2021",
-      "userId": 3,
-      "type": "Pd"
-    },
-    {
       "id": 1610890244533,
       "startDate": "22.01.2021",
       "endDate": "29.01.2021",
       "userId": 7,
+      "type": "Pd"
+    },
+    {
+      "id": 1610925982476,
+      "startDate": "05.01.2021",
+      "endDate": "29.01.2021",
+      "userId": 3,
+      "type": "UnPd"
+    },
+    {
+      "id": 1610926303891,
+      "startDate": "19.01.2021",
+      "endDate": "22.01.2021",
+      "userId": 2,
       "type": "Pd"
     }
   ]
